@@ -1,0 +1,23 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-left: 2px solid var(--interactions);
+  border-bottom: 2px solid var(--interactions);
+  gap: 10px;
+  right: 0px;
+  top: 70px;
+  background-color: var(--containers);
+  padding: 20px;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in;
+}
+
+.closed {
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in;
+}
+
+.registerLink {
+  text-align: center;
+}
