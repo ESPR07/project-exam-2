@@ -1,0 +1,17 @@
+.button {
+  background-color: var(--interactions);
+  color: var(--interactionsText);
+  font-family: var(--mainFont);
+  border: none;
+  min-height: 30px;
+  padding-inline: 10px;
+  font-size: 1.2rem;
+  transition: background-color 0.1s ease-in;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--background);
+  color: var(--interactionsText);
+  transition: background-color 0.1s ease-in;
+}
