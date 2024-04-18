@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import Button from "../common/Button";
 import MobileLogin from "../MobileLogin";
 import { useState } from "react";
 import { userAuthEvents } from "../../API/Auth/userAuthEvent";
+import DesktopLogin from "../DesktopLogin";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_LOGIN_PATH = process.env.API_LOGIN;
@@ -54,14 +54,7 @@ function Navbar() {
     <nav className={styles.navContainer}>
       <Link to="/" className={styles.navLogo}></Link>
       <ul className={styles.navList}>
-        <form className={styles.loginForm} onSubmit={(e) => {
-          e.preventDefault();
-          loginEvent();
-        }}>
-          <input type="email" placeholder="Email" value={userEmail} onChange={emailInputChange}/>
-          <input type="password" placeholder="Password" value={userPassword} onChange={passwordInputChange}/>
-          <Button text="Log in" type="submit" event={() => {}}/>
-        </form>
+        <DesktopLogin emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>
         <li><Link to="/" className={styles.registerLink}>Register</Link></li>
         <li className={styles.burgerIcon} onClick={() => {setBurgerToggle(!burgerToggle)}}></li>
         <MobileLogin toggleStatus={burgerToggle} emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>

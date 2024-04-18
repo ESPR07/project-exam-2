@@ -1,0 +1,15 @@
+.loginForm {
+  display: flex;
+  gap: 10px;
+}
+
+.loginForm input {
+  background-color: var(--background);
+  border: none;
+}
+
+@media screen and (max-width: 900px) {
+  .loginForm {
+    display: none;
+  }
+}
