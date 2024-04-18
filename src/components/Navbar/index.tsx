@@ -27,9 +27,6 @@ function Navbar() {
 
   const {userInfo, isError, isLoading, APIFetch} = userAuthEvents(API_LOGIN_URL, loginDetails);
 
-  console.log(userInfo);
-  console.log(isError);
-
   if(!isLoading && !isError) {
     localStorage.setItem("token", userInfo.accessToken);
   }

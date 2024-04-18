@@ -14,21 +14,6 @@ type LoginResponse = {
   accessToken: string
 }
 
-type RegisterResponse = {
-  name: string,
-  email: string,
-  bio: string,
-  avatar: {
-    url: string,
-    alt: string
-  },
-  banner: {
-    url: string,
-    alt: string
-  },
-  venueManager: Boolean
-  }
-
 const fakeResponse = {
   "name": "my_username",
   "email": "first.last@stud.noroff.no",
