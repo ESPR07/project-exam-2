@@ -4,6 +4,7 @@ import MobileLogin from "../MobileLogin";
 import { useState } from "react";
 import { userAuthEvents } from "../../API/Auth/userAuthEvent";
 import DesktopLogin from "../DesktopLogin";
+import Button from "../common/Button";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_LOGIN_PATH = process.env.API_LOGIN;
@@ -44,6 +45,17 @@ function Navbar() {
     APIFetch();
     setUserEmail("");
     setUserPassword("");
+  }
+
+  if(localStorage.getItem("token")) {
+    return(
+      <nav className={styles.navContainer}>
+        <Link to="/" className={styles.navLogo}></Link>
+        <ul className={styles.navList}>
+          <Button text="Logout" type="button" event={() => {localStorage.removeItem("token")}}/>
+        </ul>
+      </nav>
+    )
   }
 
 

@@ -17,10 +17,10 @@ function MobileLogin({toggleStatus, emailInput, passwordInput, emailChange, pass
       e.preventDefault();
       loginEvent();
     }}>
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" value={emailInput} onChange={emailChange}/>
-      <label htmlFor="password">Password:</label>
-      <input type="password" id="password" value={passwordInput} onChange={passwordChange}/>
+      <label htmlFor="email" className={styles.label}>Email:</label>
+      <input type="email" id="email" className={styles.input} value={emailInput} onChange={emailChange}/>
+      <label htmlFor="password" className={styles.label}>Password:</label>
+      <input type="password" id="password" className={styles.input} value={passwordInput} onChange={passwordChange}/>
       <Button text="Log In" type="submit" event={() => {}}/>
       <Link to="/" className={styles.registerLink}>Don't have an account? <br/> Register here!</Link>
     </form>
