@@ -18,6 +18,14 @@
   transition: transform 0.5s ease-in;
 }
 
+.label {
+  font-size: 1.1rem;
+}
+
+.input {
+  height: 24px;
+}
+
 .registerLink {
   text-align: center;
 }
