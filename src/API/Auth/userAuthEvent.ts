@@ -14,7 +14,7 @@ type LoginResponse = {
   accessToken: string
 }
 
-const fakeResponse = {
+export const fakeResponse = {
   "name": "my_username",
   "email": "first.last@stud.noroff.no",
   "avatar": {
@@ -38,8 +38,12 @@ export function userAuthEvents(url: string, verifictaion: {}) {
       setIsLoading(true);
       setIsError(false);
       const authEvent = await fetch(url, verifictaion);
-      const authResponse = await authEvent.json();
-      setUserInfo(authResponse.data);
+      if(authEvent.ok === true) {
+        const authResponse = await authEvent.json();
+        setUserInfo(authResponse.data);
+      } else {
+        console.log("Something went wrong!");
+      }
     } catch (error) {
       console.log(error);
       setIsError(true);
@@ -48,5 +52,5 @@ export function userAuthEvents(url: string, verifictaion: {}) {
     }
   }
 
-  return {userInfo, isError, isLoading, APIFetch};
+  return {userInfo, isError, isLoading, APIFetch, setUserInfo};
 }
