@@ -1,3 +1,23 @@
+@keyframes loginClose {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes loginOpen {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -10,12 +30,17 @@
   background-color: var(--containers);
   padding: 20px;
   transform: translateX(0);
-  transition: transform 0.5s ease-in;
+  animation: loginOpen 0.5s ease-in;
+  z-index: 10;
 }
 
 .closed {
   transform: translateX(100%);
-  transition: transform 0.5s ease-in;
+  animation: loginClose 0.5s ease-in;
+}
+
+.hidden {
+  display: none;
 }
 
 .label {

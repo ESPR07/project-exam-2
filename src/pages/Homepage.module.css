@@ -1,0 +1,12 @@
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: 15%;
+}
+
+@media screen and (max-width: 900px) {
+  .pageContent {
+    margin-inline: 10px;
+  }
+}

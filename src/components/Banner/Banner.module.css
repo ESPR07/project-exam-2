@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "unkempt";
+  src: url("/src/assets/Unkempt-Regular.ttf");
+}
+
+.bannerImage {
+  width: 100%;
+  height: 20vw;
+  max-height: 250px;
+  min-height: 150px;
+  background-image: url("/src/assets/banner.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 80%;
+}
+
+.bannerText {
+  position: absolute;
+  top: 110px;
+  width: 100%;
+  text-align: center;
+  color: var(--background);
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 0;
+  user-select: none;
+  font-family: 'unkempt', Courier, monospace;
+}
