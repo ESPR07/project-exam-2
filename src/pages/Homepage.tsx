@@ -14,15 +14,33 @@ function Homepage() {
   const [isSearched, setIsSearched] = useState<Boolean>(false);
 
   const defaultURL = `${API_VENUES_URL}?limit=10`;
-  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10`
+  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10`;
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
 
-  console.log(searchedURL)
+  if(isLoading) {
+    return(
+      <main className={styles.homepageContainer}>
+      <Banner/>
+      <section className={styles.pageContent}>
+        <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
+        <h1>Loading...</h1>
+      </section>
+    </main>
+    )
+  }
 
-  console.log("Venue List: ", venueList);
-  console.log("Loading: ", isLoading);
-  console.log("Error: ", isError);
+  if(isError) {
+    return(
+      <main className={styles.homepageContainer}>
+      <Banner/>
+      <section className={styles.pageContent}>
+        <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
+        <h1>Oops Something went wrong!</h1>
+      </section>
+    </main>
+    )
+  }
 
   return(
     <main className={styles.homepageContainer}>
