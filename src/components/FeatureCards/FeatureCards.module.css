@@ -1,0 +1,17 @@
+.featureContainer {
+  display: flex;
+  gap: 10px;
+  max-height: 30px;
+  margin-top: auto;
+  flex-wrap: wrap-reverse;
+}
+
+.featureCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--infoBox);
+  color: var(--background);
+  font-size: clamp(0.8rem, 2vw, 1.4rem);
+}

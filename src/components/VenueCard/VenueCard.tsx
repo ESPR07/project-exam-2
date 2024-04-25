@@ -1,4 +1,12 @@
+import FeatureCard from "../FeatureCards/FeatureCards";
 import styles from "./VenueCard.module.css";
+
+const fakeFeatures = {
+  wifi: true,
+  parking: true,
+  breakfast: true,
+  pets: true
+}
 
 function VenueCard() {
   return(
@@ -7,6 +15,7 @@ function VenueCard() {
       <div className={styles.infoContainer}>
         <h1>Title</h1>
         <h2><span className={styles.locationIcon}></span>Location</h2>
+        <FeatureCard {...fakeFeatures}/>
       </div>
       <div className={styles.priceContainer}>
         <p>Per/Night:</p>
