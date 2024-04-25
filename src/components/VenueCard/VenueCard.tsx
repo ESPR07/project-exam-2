@@ -1,27 +1,37 @@
+import { Link } from "react-router-dom";
 import FeatureCard from "../FeatureCards/FeatureCards";
 import styles from "./VenueCard.module.css";
 
-const fakeFeatures = {
-  wifi: true,
-  parking: true,
-  breakfast: true,
-  pets: true
+type VenueCard = {
+  id: string,
+  image: string,
+  alt: string,
+  title: string,
+  location: string,
+  features: {
+    wifi: Boolean,
+    parking: Boolean,
+    breakfast: Boolean,
+    pets: Boolean
+  },
+  price: number
 }
 
-function VenueCard() {
+
+function VenueCard({id, image, alt, title, location, features, price}: VenueCard) {
   return(
-    <div className={styles.venueContainer}>
-      <img src="/src/assets/banner.webp"/>
+    <Link to={`venue/${id}`} className={styles.venueContainer}>
+      <img src={image} alt={alt}/>
       <div className={styles.infoContainer}>
-        <h1>Title</h1>
-        <h2><span className={styles.locationIcon}></span>Location</h2>
-        <FeatureCard {...fakeFeatures}/>
+        <h1>{title}</h1>
+        <h2><span className={styles.locationIcon}></span>{location}</h2>
+        <FeatureCard {...features}/>
       </div>
       <div className={styles.priceContainer}>
         <p>Per/Night:</p>
-        <p>$200</p>
+        <p>${price}</p>
       </div>
-    </div>
+    </Link>
   )
 }
 
