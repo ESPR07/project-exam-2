@@ -187,7 +187,7 @@ export function getVenueList(url: string) {
       }
     }
     APIFetch();
-  }, [])
+  }, [url])
 
   return {venueList, isError, isLoading};
 }
