@@ -49,7 +49,7 @@ function Homepage() {
         <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
         {venueList.data.map((venue) => {
           return(
-            <VenueCard key={venue.id} id={venue.id} image={venue.media[0].url} alt={venue.media[0].alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price}/>
+            <VenueCard key={venue.id} id={venue.id} image={venue.media[0]?.url} alt={venue.media[0]?.alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price}/>
           )
         })}
       </section>

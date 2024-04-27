@@ -1,0 +1,91 @@
+.carouselContainer {
+  position: relative;
+}
+
+.imageContainer {
+  display: grid;
+  grid-auto-flow:column;
+  overflow: hidden;
+  max-height: 300px;
+  scroll-behavior: smooth;
+}
+
+.carouselContainer img {
+  width: 70vw;
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dotContainer {
+  position: absolute;
+  bottom: 10px;
+  left: 30vw;
+}
+
+.dotSelector {
+  width: 20px;
+  height: 20px;
+  margin-inline: 5px;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.dotActive {
+  background-color: var(--interactions);
+}
+
+.carouselButton {
+  position: absolute;
+  background-color: var(--containers);
+  border: none;
+  border-radius: 100%;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+  background-image: url("/src/assets/backIcon.svg");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.carouselButton:disabled {
+  filter: grayscale(100%);
+  cursor: default;
+}
+
+.prevImage {
+  left: 10px;
+  top: 40%;
+}
+
+.nextImage {
+  right: 10px;
+  top: 40%;
+  rotate: 180deg;
+}
+
+@media screen and (max-width: 900px) {
+  .carouselContainer {
+    max-height: 200px;
+  }
+
+  .imageContainer {
+    max-height: 200px;
+  }
+  
+  .carouselContainer img {
+    width: 100vw;
+    height: 100%;
+  }
+
+  .dotContainer {
+    left: 35%;
+  }
+
+  .carouselButton {
+    width: 50px;
+    height: 50px;
+  }
+}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FeatureCard from "../FeatureCards/FeatureCards";
+import FeatureCard from "../common/FeatureCards/FeatureCards";
 import styles from "./VenueCard.module.css";
 
 type VenueCard = {
