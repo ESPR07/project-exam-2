@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import MobileLogin from "../MobileLogin";
-import { useState } from "react";
-import { fakeResponse, userAuthEvents } from "../../API/Auth/userAuthEvent";
+import { useContext, useState } from "react";
+import { fakeResponse, userAuthEvents } from "../../API/Auth/loginAuthEvent";
 import DesktopLogin from "../DesktopLogin";
 import Button from "../common/Button";
+import { AuthContext } from "../../App";
 const API_BASE = process.env.API_BASE_URL;
 const API_LOGIN_PATH = process.env.API_LOGIN;
 const API_LOGIN_URL = `${API_BASE}${API_LOGIN_PATH}`
@@ -13,6 +14,7 @@ function Navbar() {
   const [burgerToggle, setBurgerToggle] = useState<Boolean>(false);
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
+  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
   
   const loginDetails = {
     method: "POST",
@@ -40,13 +42,16 @@ function Navbar() {
     setUserPassword(e.target.value);
   }
 
-  function loginEvent() {
-    APIFetch();
-    setUserEmail("");
-    setUserPassword("");
+  async function loginEvent() {
+    const response = await APIFetch();
+    if(response?.ok !== false) {
+      setUserEmail("");
+      setUserPassword("");
+      setIsLoggedIn(true);
+    }
   }
 
-  if(localStorage.getItem("token")) {
+  if(isLoggedIn) {
     return(
       <nav className={styles.navContainer}>
         <Link to="/" className={styles.navLogo}></Link>
@@ -54,6 +59,7 @@ function Navbar() {
           <Button text="Logout" type="button" event={() => {
             localStorage.removeItem("token");
             setUserInfo(fakeResponse);
+            setIsLoggedIn(false);
           }}/>
         </ul>
       </nav>

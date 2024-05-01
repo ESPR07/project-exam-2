@@ -10,6 +10,29 @@ type SingleVenue = {
       alt: string
     },
   ],
+  bookings: [
+    {
+      created: string,
+      customer: {
+        name: string,
+        email: string,
+        bio: string | null,
+        avatar: {
+          url: string,
+          alt: string
+        },
+        banner: {
+          url: string,
+          alt: string
+        }
+      },
+      dateFrom: string,
+      dateTo: string,
+      guests: number,
+      id: string,
+      updated: string
+    }
+  ],
   price: number,
   maxGuests: number,
   rating: number,
@@ -41,6 +64,29 @@ const fakeSingleVenue: SingleVenue = {
       url: "https://url.com/image.jpg",
       alt: "string"
     },
+  ],
+  bookings: [
+    {
+      created: "string",
+      customer: {
+        name: "string",
+        email: "string",
+        bio: "string",
+        avatar: {
+          url: "string",
+          alt: "string"
+        },
+        banner: {
+          url: "string",
+          alt: "string"
+        }
+      },
+      dateFrom: "string",
+      dateTo: "string",
+      guests: 1,
+      id: "string",
+      updated: "string"
+    }
   ],
   price: 0,
   maxGuests: 0,

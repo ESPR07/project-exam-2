@@ -37,13 +37,18 @@ function ImageCarousel({images}: {images: [Images]}) {
     }
   }
 
+  function fallbackImage(e: React.SyntheticEvent<HTMLImageElement, Event>) {
+    const target = e.currentTarget as HTMLImageElement;
+    target.src = "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+  }
+
   return(
     <>
     <div id="carousel" ref={activeImage} className={styles.carouselContainer}>
       <div className={styles.imageContainer}>
         {images.map((image, index) => {
           return(
-            <img key={`image-${index}`} id={`image-${index}`} src={image.url} alt={image.alt}></img>
+            <img key={`image-${index}`} id={`image-${index}`} src={image.url} alt={image.alt} onError={fallbackImage}></img>
           )
         })}
       </div>
