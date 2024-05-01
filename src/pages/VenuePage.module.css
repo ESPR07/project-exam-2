@@ -1,0 +1,28 @@
+.pageContent {
+  margin-inline: 15%;
+}
+
+.backButton {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.backIcon {
+  height: 20px;
+  width: 30px;
+  background-image: url("/src/assets/backIcon.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.venueInfo {
+  padding-inline: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .pageContent {
+    margin-inline: 0%;
+  }
+}

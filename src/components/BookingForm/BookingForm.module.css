@@ -1,0 +1,67 @@
+.bookingContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--containers);
+  padding: 20px;
+}
+
+.bookingContainer h2 {
+  margin-bottom: 10px;
+}
+
+.bookingForm {
+  display: grid;
+  grid-template-areas: "calendars calendars"
+                       "error error"
+                       "guestsLabel guestsLabel"
+                       "guestsInput submitButton";
+  gap: 10px;
+}
+
+.bookingForm label {
+  font-size: 1.2rem;
+}
+
+.calendarContainer {
+  grid-area: calendars;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.bookingError {
+  grid-area: error;
+  color: red;
+  font-size: 1.2rem;
+  margin: 0;
+  margin-block: 5px;
+}
+
+.guestsLabel {
+  grid-area: guestsLabel;
+}
+
+.guestsInput {
+  grid-area: guestsInput;
+}
+
+.bookingForm input {
+  min-height: 30px;
+  font-family: var(--mainFont);
+  font-size: 1rem;
+}
+
+.bookingForm button {
+  grid-area: submitButton;
+}
+
+@media screen and (max-width: 900px) {
+  .calendarContainer {
+    flex-direction: column;
+  }
+
+  .guestsInput {
+    width: 90%;
+  }
+  
+}

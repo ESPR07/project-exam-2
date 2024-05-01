@@ -42,8 +42,10 @@ export function userAuthEvents(url: string, verifictaion: {}) {
         const authResponse = await authEvent.json();
         setUserInfo(authResponse.data);
       } else {
+        setIsError(true);
         console.log("Something went wrong!");
       }
+      return authEvent;
     } catch (error) {
       console.log(error);
       setIsError(true);

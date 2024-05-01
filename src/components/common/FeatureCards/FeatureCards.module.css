@@ -14,4 +14,5 @@
   background-color: var(--infoBox);
   color: var(--background);
   font-size: clamp(0.8rem, 2vw, 1.4rem);
+  user-select: none;
 }
