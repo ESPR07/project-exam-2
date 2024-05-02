@@ -35,7 +35,7 @@ function MobileLogin({toggleStatus, emailInput, passwordInput, emailChange, pass
       <label htmlFor="password" className={styles.label}>Password:</label>
       <input type="password" id="password" className={styles.input} value={passwordInput} onChange={passwordChange}/>
       <Button text="Log In" type="submit" event={() => {}}/>
-      <Link to="/" className={styles.registerLink}>Don't have an account? <br/> Register here!</Link>
+      <Link to="/register" className={styles.registerLink}>Don't have an account? <br/> Register here!</Link>
     </form>
   )
 }

@@ -1,0 +1,70 @@
+.pageContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--containers);
+  width: 50%;
+  padding-block: 10px;
+}
+
+.registerForm h2 {
+  margin-top: 20px;
+}
+
+.tickBoxContainer {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 20px;
+  border-bottom: 2px solid var(--interactions);
+}
+
+.tickBoxContainer label {
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  background-color: var(--background);
+}
+
+.tickBoxContainer input:checked + label {
+  background-color: var(--interactions);
+  background-image: url("/src/assets/successTick.svg");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tickBoxContainer input {display: none;}
+
+.tickBoxContainer p {
+  margin: 0;
+  margin-left: 20px;
+  margin-right: 5px;
+  user-select: none;
+}
+
+.inputContainer, .avatarBanner {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  border-bottom: 2px solid var(--interactions);
+  margin-bottom: 10px;
+}
+
+.inputContainer input, .avatarBanner input {
+  height: 25px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .registerForm {
+    width: 90%;
+  }
+}
