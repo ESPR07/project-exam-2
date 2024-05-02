@@ -28,7 +28,7 @@ export const fakeResponse = {
   "accessToken": "Fake Key"
   }
 
-export function userAuthEvents(url: string, verifictaion: {}) {
+export function loginAuthEvents(url: string, verifictaion: {}) {
   const [userInfo, setUserInfo] = useState<LoginResponse>(fakeResponse);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [isError, setIsError] = useState<Boolean>(false);

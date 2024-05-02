@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import MobileLogin from "../MobileLogin";
 import { useContext, useState } from "react";
-import { fakeResponse, userAuthEvents } from "../../API/Auth/loginAuthEvent";
+import { fakeResponse, loginAuthEvents } from "../../API/Auth/loginAuthEvent";
 import DesktopLogin from "../DesktopLogin";
 import Button from "../common/Button";
 import { AuthContext } from "../../App";
@@ -27,7 +27,7 @@ function Navbar() {
     })
   }
 
-  const {userInfo, isError, isLoading, APIFetch, setUserInfo} = userAuthEvents(API_LOGIN_URL, loginDetails);
+  const {userInfo, isError, isLoading, APIFetch, setUserInfo} = loginAuthEvents(API_LOGIN_URL, loginDetails);
 
   if(!isLoading && !isError && userInfo.accessToken !== "Fake Key") {
     localStorage.setItem("token", userInfo.accessToken);
@@ -72,7 +72,7 @@ function Navbar() {
       <Link to="/" className={styles.navLogo}></Link>
       <ul className={styles.navList}>
         <DesktopLogin emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>
-        <li><Link to="/" className={styles.registerLink}>Register</Link></li>
+        <li><Link to="/register" className={styles.registerLink}>Register</Link></li>
         <li className={styles.burgerIcon} onClick={() => {setBurgerToggle(!burgerToggle)}}></li>
         <MobileLogin toggleStatus={burgerToggle} emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>
       </ul>
