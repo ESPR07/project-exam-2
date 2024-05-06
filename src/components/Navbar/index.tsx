@@ -31,6 +31,7 @@ function Navbar() {
 
   if(!isLoading && !isError && userInfo.accessToken !== "Fake Key") {
     localStorage.setItem("token", userInfo.accessToken);
+    localStorage.setItem("name", userInfo.name)
   }
 
 
@@ -58,6 +59,7 @@ function Navbar() {
         <ul className={styles.navList}>
           <Button text="Logout" type="button" event={() => {
             localStorage.removeItem("token");
+            localStorage.removeItem("name");
             setUserInfo(fakeResponse);
             setIsLoggedIn(false);
           }}/>

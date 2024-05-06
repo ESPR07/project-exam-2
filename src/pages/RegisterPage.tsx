@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./RegisterPage.module.css";
 import Button from "../components/common/Button";
-import { useNavigate } from "react-router-dom";
 import { registerAuthEvents } from "../API/Auth/registerAuthEvent";
+import { redirect } from "react-router-dom";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_REGISTER_PATH = process.env.API_REGISTER;
@@ -16,14 +16,7 @@ function RegisterPage() {
   const [avatarURL, setAvatarURL] = useState<string>("");
   const [bannerURL, setBannerURL] = useState<string>("");
 
-  const navigate = useNavigate();
-
   const {RegisterFetch} = registerAuthEvents();
-
-  if(localStorage.getItem("token")) {
-    alert("You are already logged in, redirecting to homepage.");
-    navigate("/");
-  }
 
   function handleYes() {
     setIsManager(true)
@@ -57,7 +50,7 @@ function RegisterPage() {
     const response = await RegisterFetch(API_REGISTER_URL, registerDetails);
     if(response?.ok !== false) {
       alert(`Welcome to Holidaze ${name}`);
-      navigate("/");
+      redirect("/");
     }
   }
 
