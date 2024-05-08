@@ -1,5 +1,5 @@
 .pageContent {
-  margin-inline: 20%;
+  margin-inline: 15%;
 }
 
 .profileBanner {
@@ -79,7 +79,7 @@
 
 @media screen and (max-width: 900px) {
   .pageContent {
-    margin-inline: 0;
+    margin-inline: 10px;
   }
 
   .profileBanner {

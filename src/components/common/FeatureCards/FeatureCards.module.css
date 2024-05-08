@@ -1,8 +1,10 @@
 .featureContainer {
+  grid-area: feature;
   display: flex;
   gap: 10px;
   max-height: 30px;
   margin-top: auto;
+  margin-inline: 10px;
   flex-wrap: wrap-reverse;
 }
 
@@ -15,4 +17,10 @@
   color: var(--background);
   font-size: clamp(0.8rem, 2vw, 1.4rem);
   user-select: none;
+}
+
+@media screen and (max-width: 900px) {
+  .featureContainer {
+    margin-inline: 0;
+  }
 }

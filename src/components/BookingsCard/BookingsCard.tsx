@@ -48,9 +48,12 @@ function BookingCard({bookings} : {bookings: Bookings}) {
     <img src={bookingVenue.media[0].url} alt={bookingVenue.media[0].alt}/>
     <div className={styles.infoContainer}>
       <h1>{bookingVenue.name}</h1>
-      <h2><span className={styles.locationIcon}></span>{bookingVenue.location.country}</h2>
-      <FeatureCard {...bookingVenue.meta}/>
+      <div className={styles.metaInfo}>
+        <h2><span className={styles.locationIcon}></span>{bookingVenue.location.country}</h2>
+        <p className={styles.guestsAmount}>Guests: {bookings.guests}</p>
+      </div>
     </div>
+    <FeatureCard {...bookingVenue.meta}/>
     <div className={styles.dateContainer}>
       <p>Dates:</p>
       <p>{bookings.dateFrom.split("T")[0]}</p>

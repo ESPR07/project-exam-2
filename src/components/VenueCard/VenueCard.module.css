@@ -1,5 +1,9 @@
 .venueContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  grid-template-areas: "image meta price"
+                       "image meta price"
+                       "image feature price";
   width: 100%;
   border-bottom: 2px solid var(--interactions);
   padding-block: 10px;
@@ -8,9 +12,9 @@
 }
 
 .venueContainer img {
+  grid-area: image;
   width: 100%;
   height: 20vw;
-  max-width: 250px;
   max-height: 200px;
   min-width: 133px;
   object-fit: cover;
@@ -18,10 +22,11 @@
 }
 
 .infoContainer {
-  display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
-  margin-left: 20px;
+  grid-area: meta;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  margin-left: 10px;
 }
 
 .infoContainer h1, h2 {
@@ -48,6 +53,7 @@
 }
 
 .priceContainer {
+  grid-area: price;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -67,4 +73,16 @@
 
 .priceContainer p:last-child {
   font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+@media screen and (max-width: 900px) {
+  .venueContainer {
+    grid-template-areas: "image meta price"
+                         "image meta price"
+                         "feature feature price";
+  }
+
+  .venueContainer img {
+    margin-bottom: 10px;
+  }
 }

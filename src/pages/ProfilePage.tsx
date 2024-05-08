@@ -3,7 +3,6 @@ import Button from "../components/common/Button";
 import styles from "./ProfilePage.module.css";
 import { getProfile } from "../API/Data/getProfile";
 import { useState } from "react";
-import VenueCard from "../components/VenueCard/VenueCard";
 import { useNavigate } from "react-router-dom";
 
 const API_BASE = process.env.API_BASE_URL;
@@ -30,10 +29,6 @@ function ProfilePage() {
   };
 
   const { profileInfo, isLoading, isError } = getProfile(getProfileURL, profileHeader);
-
-  console.log(profileInfo);
-  console.log(isLoading);
-  console.log(isError);
 
   function clickCreateVenue() {
     navigate("/create-venue");
@@ -101,14 +96,15 @@ function ProfilePage() {
               <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p>
             </div>
             <Button text="Create Venue" type="button" event={clickCreateVenue}/>
-            {profileInfo?.venues.map((venues) => {
-              return(
-                <VenueCard key={venues.id} id={venues.id} image={venues.media[0].url} alt={venues.media[0].alt} title={venues.name} location={venues.location.country} features={venues.meta} price={venues.price} />
-              )
-            })}
           </div>
         </section>
       </main>
+    )
+  }
+
+  if(isError) {
+    return(
+      <h1>Oops something went wrong!</h1>
     )
   }
 }
