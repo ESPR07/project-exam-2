@@ -15,6 +15,7 @@ function Navbar() {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+  const [isErrorMessage, setIsErrorMessage] = useState<boolean>(false);
   const userAvatar = localStorage.getItem("avatar");
   
   const loginDetails = {
@@ -48,9 +49,12 @@ function Navbar() {
   async function loginEvent() {
     const response = await APIFetch();
     if(response?.ok !== false) {
+      setIsErrorMessage(false);
       setUserEmail("");
       setUserPassword("");
       setIsLoggedIn(true);
+    } else {
+      setIsErrorMessage(true);
     }
   }
 
@@ -77,10 +81,10 @@ function Navbar() {
     <nav className={styles.navContainer}>
       <Link to="/" className={styles.navLogo}></Link>
       <ul className={styles.navList}>
-        <DesktopLogin emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>
+        <DesktopLogin emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent} isErrorMessage={isErrorMessage}/>
         <li><Link to="/register" className={styles.registerLink}>Register</Link></li>
         <li className={styles.burgerIcon} onClick={() => {setBurgerToggle(!burgerToggle)}}></li>
-        <MobileLogin toggleStatus={burgerToggle} emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent}/>
+        <MobileLogin toggleStatus={burgerToggle} emailInput={userEmail} passwordInput={userPassword} emailChange={emailInputChange} passwordChange={passwordInputChange} loginEvent={loginEvent} isErrorMessage={isErrorMessage}/>
       </ul>
     </nav>
   )

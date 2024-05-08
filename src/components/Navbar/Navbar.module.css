@@ -28,6 +28,11 @@
   height: 100%;
 }
 
+.errorMessage {
+  margin: 0;
+  color: rgb(211, 9, 9);
+}
+
 .profileButton {
   height: 50px;
   width: 50px;
