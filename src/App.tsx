@@ -46,6 +46,7 @@ function App() {
         <Route path="venue/:id" element={<VenuePage/>}/>
         <Route path="register" element={<PrivateRouteReverseCheck auth={{isLoggedIn}} children={<RegisterPage/>}/>}/>
         <Route path="profile" element={<PrivateRoute auth={{isLoggedIn}} children={<ProfilePage/>}/>}/>
+        <Route path="profile/create-venue" element={<PrivateRoute auth={{isLoggedIn}} children={<RegisterPage/>}/>}/>
       </Route>
     </Routes>
     </AuthContext.Provider>

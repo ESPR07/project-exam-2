@@ -31,7 +31,7 @@ function ProfilePage() {
   const { profileInfo, isLoading, isError } = getProfile(getProfileURL, profileHeader);
 
   function clickCreateVenue() {
-    navigate("/create-venue");
+    navigate("create-venue");
   }
 
   if(!isLoading && isBooking) {
