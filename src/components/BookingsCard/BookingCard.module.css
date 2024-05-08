@@ -1,9 +1,9 @@
 .venueContainer {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr;
-  grid-template-areas: "image meta price"
-                       "image meta price"
-                       "image feature price";
+  grid-template-areas: "image meta date"
+                       "image meta date"
+                       "image feature date";
   width: 100%;
   border-bottom: 2px solid var(--interactions);
   padding-block: 10px;
@@ -34,7 +34,7 @@
 }
 
 .infoContainer h1 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.2rem, 3vw, 2rem);
 }
 
 .infoContainer h2 {
@@ -52,34 +52,43 @@
   background-repeat: no-repeat;
 }
 
-.priceContainer {
-  grid-area: price;
+.guestsAmount {
+  margin: 0;
+  margin-top: 5px;
+}
+
+.dateContainer {
+  grid-area: date;
   display: flex;
   flex-direction: column;
   justify-content: end;
+  align-items: end;
 }
 
-.priceContainer p {
+.dateContainer p {
   margin: 0;
-  margin-bottom: 5px;
-  text-align: end;
   text-wrap: nowrap;
-}
-
-.priceContainer p:first-child {
-  color: var(--interactions);
   font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
-.priceContainer p:last-child {
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+.dateContainer p:first-child {
+  color: var(--interactions);
+}
+
+.dateContainer p:nth-child(2) {
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--interactions);
+}
+
+.dateContainer p:last-child {
+  padding-top: 5px;
 }
 
 @media screen and (max-width: 900px) {
   .venueContainer {
-    grid-template-areas: "image meta price"
-                         "image meta price"
-                         "feature feature price";
+    grid-template-areas: "image meta date"
+                         "image meta date"
+                         "feature feature date";
   }
 
   .venueContainer img {

@@ -5,7 +5,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { postBooking } from "../../API/Data/postBooking";
 import { AuthContext } from "../../App";
-import { getApiKey } from "../../API/Auth/getApiKey";
 
 const defaultValue = new Date();
 
@@ -41,8 +40,6 @@ type Bookings = [
 
 const API_BASE = process.env.API_BASE_URL;
 const API_BOOKING_PATH = process.env.API_BOOKINGS;
-const API_KEY_PATH = process.env.API_KEY;
-const API_KEY_URL = `${API_BASE}${API_KEY_PATH}`;
 const API_POST_BOOKING_URL = `${API_BASE}${API_BOOKING_PATH}`
 
 
@@ -55,23 +52,6 @@ function BookingForm({venueID, bookings}: {venueID: string, bookings: Bookings})
   const {isLoggedIn} = useContext(AuthContext);
 
   const {bookingFetch} = postBooking()
-  const {keyFetch} = getApiKey();
-
-  const userAuth = {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
-    },
-    body: JSON.stringify({
-      name: "API_KEY"
-    })
-  }
-
-  async function getKey() {
-    const response = await keyFetch(API_KEY_URL, userAuth);
-    return response.data.key;
-  }
 
   useEffect(() => {
     const excludedDates = bookings.map((booking) => {
@@ -117,14 +97,13 @@ function BookingForm({venueID, bookings}: {venueID: string, bookings: Bookings})
 
 
   const handleBooking = async () => {
-    const APIKey = await getKey();
 
     const bookingDetails = {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        "X-Noroff-API-Key": APIKey
+        "X-Noroff-API-Key": process.env.API_KEY,
       },
       body: JSON.stringify({
         dateFrom: startDate,

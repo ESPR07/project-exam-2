@@ -25,8 +25,8 @@ function VenueCard({id, image, alt, title, location, features, price}: VenueCard
       <div className={styles.infoContainer}>
         <h1>{title}</h1>
         <h2><span className={styles.locationIcon}></span>{location}</h2>
-        <FeatureCard {...features}/>
       </div>
+      <FeatureCard {...features}/>
       <div className={styles.priceContainer}>
         <p>Per/Night:</p>
         <p>${price}</p>
