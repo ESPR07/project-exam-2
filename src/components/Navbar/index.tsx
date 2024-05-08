@@ -14,7 +14,8 @@ function Navbar() {
   const [burgerToggle, setBurgerToggle] = useState<Boolean>(false);
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
-  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
+  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+  const userAvatar = localStorage.getItem("avatar");
   
   const loginDetails = {
     method: "POST",
@@ -31,7 +32,8 @@ function Navbar() {
 
   if(!isLoading && !isError && userInfo.accessToken !== "Fake Key") {
     localStorage.setItem("token", userInfo.accessToken);
-    localStorage.setItem("name", userInfo.name)
+    localStorage.setItem("name", userInfo.name);
+    localStorage.setItem("avatar", userInfo.avatar.url);
   }
 
 
@@ -52,17 +54,19 @@ function Navbar() {
     }
   }
 
+  function logoutEvent() {
+    localStorage.clear();
+    setUserInfo(fakeResponse);
+    setIsLoggedIn(false);
+  }
+
   if(isLoggedIn) {
     return(
       <nav className={styles.navContainer}>
         <Link to="/" className={styles.navLogo}></Link>
         <ul className={styles.navList}>
-          <Button text="Logout" type="button" event={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("name");
-            setUserInfo(fakeResponse);
-            setIsLoggedIn(false);
-          }}/>
+          <Link to="/profile" className={styles.profileButton} style={{ backgroundImage: `url("${userAvatar}")` }}></Link>
+          <Button text="Logout" type="button" event={logoutEvent}/>
         </ul>
       </nav>
     )

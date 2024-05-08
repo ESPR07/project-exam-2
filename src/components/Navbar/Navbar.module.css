@@ -28,6 +28,20 @@
   height: 100%;
 }
 
+.profileButton {
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  border: 2px solid var(--interactions)
+}
+
+.profileButton:hover {
+  cursor: pointer;
+}
+
 .burgerIcon {
   display: none;
   height: 50px;
