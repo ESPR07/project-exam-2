@@ -9,10 +9,11 @@ type MobileLoginForm = {
   passwordInput: string,
   emailChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   passwordChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  loginEvent: () => void
+  loginEvent: () => void,
+  isErrorMessage: boolean
 }
 
-function MobileLogin({toggleStatus, emailInput, passwordInput, emailChange, passwordChange, loginEvent}: MobileLoginForm) {
+function MobileLogin({toggleStatus, emailInput, passwordInput, emailChange, passwordChange, loginEvent, isErrorMessage}: MobileLoginForm) {
   const [hideMenu, setHideMenu] = useState(true);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function MobileLogin({toggleStatus, emailInput, passwordInput, emailChange, pass
       <input type="email" id="email" className={styles.input} value={emailInput} onChange={emailChange}/>
       <label htmlFor="password" className={styles.label}>Password:</label>
       <input type="password" id="password" className={styles.input} value={passwordInput} onChange={passwordChange}/>
+      {isErrorMessage? <p className={styles.errorMessage}>Email or password is incorrect.</p> : ""}
       <Button text="Log In" type="submit" event={() => {}}/>
       <Link to="/register" className={styles.registerLink}>Don't have an account? <br/> Register here!</Link>
     </form>

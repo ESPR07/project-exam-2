@@ -32,6 +32,7 @@
   transform: translateX(0);
   animation: loginOpen 0.5s ease-in;
   z-index: 10;
+  width: 60%;
 }
 
 .closed {
@@ -49,6 +50,12 @@
 
 .input {
   height: 24px;
+}
+
+.errorMessage {
+  margin: 0;
+  color: rgb(211, 9, 9);
+  text-align: center;
 }
 
 .registerLink {

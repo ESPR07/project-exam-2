@@ -2,12 +2,18 @@
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 50px;
+  top: 30px;
   transform: translateY(-50%);
   height: 100px;
   width: 100%;
   max-width: 700px;
   background-color: var(--containers);
+  transition: all 0.5s ease-in;
+}
+
+.searchContainer[data-stuck] {
+  height: 70px;
+  max-width: 100%;
 }
 
 .searchForm {
