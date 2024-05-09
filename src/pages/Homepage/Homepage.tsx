@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { getVenueList } from "../API/Data/getVenueList";
-import Banner from "../components/Banner/Banner";
-import Searchbar from "../components/Searchbar/Searchbar";
-import VenueCard from "../components/VenueCard/VenueCard";
+import { getVenueList } from "../../API/Data/getVenueList";
+import Banner from "../../components/Banner/Banner";
+import Searchbar from "../../components/Searchbar/Searchbar";
+import VenueCard from "../../components/VenueCard/VenueCard";
 import styles from "./Homepage.module.css";
 
 const API_BASE = process.env.API_BASE_URL;

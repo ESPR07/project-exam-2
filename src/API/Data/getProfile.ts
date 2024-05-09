@@ -50,7 +50,39 @@ type ProfileResponse = {
       },
     }
   ],
-  venues: [{}],
+  venues: [
+    {
+      id: string,
+      created: string,
+      description: string,
+      maxGuests: number,
+      name: string,
+      price: number,
+      rating: number,
+      updated: string,
+      media: [
+        {
+          url: string,
+          alt: string
+        }
+      ],
+      meta: {
+        wifi: boolean,
+        parking: boolean,
+        breakfast: boolean,
+        pets: boolean
+      },
+      location: {
+        address: string,
+        city: string,
+        continent: string,
+        country: string,
+        lat: number,
+        lng: number,
+        zip: string
+      }
+    }
+  ],
   venueManager: boolean,
   _count: {
     venues: number,
