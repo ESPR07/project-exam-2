@@ -12,6 +12,17 @@
   border-bottom: 2px solid var(--interactions);
 }
 
+.progressContainer p {
+  transform: scale(1);
+  transition: transform 0.3s ease-in;
+}
+
+.progressContainer p:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in;
+}
+
 .progressArrow {
   width: 10vw;
   height: 50px;
@@ -54,10 +65,11 @@
   margin-bottom: 10px;
 }
 
-.infoContainer {
+.container {
   display: flex;
   flex-direction: column;
   width: calc(70vw - 40px);
+  border-bottom: 2px solid var(--interactions);
 }
 
 .tickBoxContainer {
@@ -66,7 +78,6 @@
   justify-content: center;
   align-items: center;
   padding-block: 20px;
-  border-bottom: 2px solid var(--interactions);
 }
 
 .tickBoxContainer label {
@@ -93,23 +104,24 @@
   user-select: none;
 }
 
-.locationContainer {
-  display: flex;
-  flex-direction: column;
-  width: calc(70vw - 40px);
-}
-
 .imageContainer {
   display: flex;
-  flex-direction: column;
-  width: calc(70vw - 40px);
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .imageContainer img {
-  max-height: 350px;
+  max-width: 300px;
+  max-height: 250px;
   object-fit: cover;
-  object-position: center;
-  margin-bottom: 20px;
+}
+
+.container button {
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 65px);
+  height: 40px;
 }
 
 .navigationContainer {

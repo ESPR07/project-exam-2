@@ -4,6 +4,7 @@ import styles from "./ProfilePage.module.css";
 import { getProfile } from "../../API/Data/getProfile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import VenueCard from "../../components/VenueCard/VenueCard";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_PROFILE_PATH = process.env.API_ALL_PROFILES;
@@ -96,6 +97,11 @@ function ProfilePage() {
               <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p>
             </div>
             <Button text="Create Venue" type="button" event={clickCreateVenue}/>
+            {profileInfo?.venues.map((venues) => {
+              return(
+                <VenueCard id={venues.id} image={venues.media[0].url} alt={venues.media[0].alt} title={venues.name} location={venues.location.country} features={venues.meta} price={venues.price}/>
+              )
+            })}
           </div>
         </section>
       </main>
