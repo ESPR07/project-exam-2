@@ -38,11 +38,7 @@ function CreateVenuePage() {
   const pageRef = useRef<HTMLFormElement>(null);
 
   const {register, reset, handleSubmit, formState: { errors }} = useForm();
-  const {venueSuccess, isError, isLoading, venueFetch} = postVenue();
-
-  console.log("venue status: ", venueSuccess)
-  console.log("error status: ", isError)
-  console.log("loading status: ", isLoading)
+  const {venueFetch} = postVenue();
 
 
   useEffect(() => {
