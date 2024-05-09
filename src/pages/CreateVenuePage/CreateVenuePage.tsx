@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../../components/common/Button";
 import styles from "./CreateVenuePage.module.css";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { postVenue } from "../../API/Data/postVenue";
 
 type ImageLinks = [
