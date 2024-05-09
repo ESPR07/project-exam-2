@@ -85,6 +85,8 @@
   width: 25px;
   border-radius: 100%;
   background-color: var(--background);
+  margin-right: 20px;
+  margin-left: 5px;
 }
 
 .tickBoxContainer input:checked + label {
@@ -95,12 +97,12 @@
   background-position: center;
 }
 
-.tickBoxContainer input {display: none;}
+.tickBoxContainer input {
+  display: none;
+}
 
 .tickBoxContainer p {
   margin: 0;
-  margin-left: 20px;
-  margin-right: 5px;
   user-select: none;
 }
 
@@ -140,4 +142,33 @@
 .errorText {
   margin: 0;
   color: red;
+}
+
+@media screen and (max-width: 900px) {
+  .pageContent {
+    margin-inline: 10px;
+  }
+
+  .carouselContainer {
+    width: 90vw;
+  }
+
+  .container {
+    width: calc(90vw - 40px);
+  }
+
+  .tickBoxContainer {
+    justify-content: space-between;
+  }
+
+  .tickBoxContainer label {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .navigationContainer {
+    margin-bottom: 100px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--interactions);
+  }
 }
