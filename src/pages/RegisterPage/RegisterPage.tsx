@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./RegisterPage.module.css";
-import Button from "../components/common/Button";
-import { registerAuthEvents } from "../API/Auth/registerAuthEvent";
+import Button from "../../components/common/Button";
+import { registerAuthEvents } from "../../API/Auth/registerAuthEvent";
 import { redirect } from "react-router-dom";
 
 const API_BASE = process.env.API_BASE_URL;

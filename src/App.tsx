@@ -1,10 +1,11 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
-import Homepage from "./pages/Homepage"
-import VenuePage from "./pages/VenuePage"
+import Homepage from "./pages/Homepage/Homepage"
+import VenuePage from "./pages/VenuePage/VenuePage"
 import { createContext, useState } from "react"
-import RegisterPage from "./pages/RegisterPage"
-import ProfilePage from "./pages/ProfilePage"
+import RegisterPage from "./pages/RegisterPage/RegisterPage"
+import ProfilePage from "./pages/ProfilePage/ProfilePage"
+import CreateVenuePage from "./pages/CreateVenuePage/CreateVenuePage"
 
 type PrivateRoute = {
   auth: {
@@ -52,7 +53,7 @@ function App() {
         <Route path="venue/:id" element={<VenuePage/>}/>
         <Route path="register" element={<PrivateRouteReverseCheck auth={{isLoggedIn}} children={<RegisterPage/>}/>}/>
         <Route path="profile" element={<PrivateRoute auth={{isLoggedIn}} children={<ProfilePage/>}/>}/>
-        <Route path="profile/create-venue" element={<PrivateRoute auth={{isLoggedIn}} children={<RegisterPage/>}/>}/>
+        <Route path="profile/create-venue" element={<PrivateRoute auth={{isLoggedIn}} children={<CreateVenuePage/>}/>}/>
       </Route>
     </Routes>
     </AuthContext.Provider>

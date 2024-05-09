@@ -1,7 +1,7 @@
-import BookingCard from "../components/BookingsCard/BookingsCard";
-import Button from "../components/common/Button";
+import BookingCard from "../../components/BookingsCard/BookingsCard";
+import Button from "../../components/common/Button";
 import styles from "./ProfilePage.module.css";
-import { getProfile } from "../API/Data/getProfile";
+import { getProfile } from "../../API/Data/getProfile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
