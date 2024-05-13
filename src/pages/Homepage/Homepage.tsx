@@ -18,8 +18,6 @@ function Homepage() {
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
 
-  console.log(venueList);
-
   if(isLoading) {
     return(
       <main className={styles.homepageContainer}>

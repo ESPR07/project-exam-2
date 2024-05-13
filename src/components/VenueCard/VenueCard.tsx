@@ -10,7 +10,7 @@ type VenueCard = {
   alt: string,
   title: string,
   location: string,
-  owner: string,
+  owner: string | null,
   features: {
     wifi: Boolean,
     parking: Boolean,

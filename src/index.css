@@ -16,11 +16,15 @@ body{
   color: var(--textColor);
 }
 
-input {
+input, textarea {
   opacity: 70%;
+  border-radius: 3px;
+  border: none;
+  font-family: var(--mainFont);
+  padding-left: 5px;
 }
 
-input:focus {
+input:focus, textarea:focus {
   opacity: 90%;
 }
 

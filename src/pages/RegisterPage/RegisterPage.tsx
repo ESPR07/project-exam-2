@@ -77,7 +77,7 @@ function RegisterPage() {
           <label htmlFor="email">Email</label>
           <input type="email" id="name" value={email} placeholder="@stud.noroff.no" onChange={(e) => {setEmail(e.target.value)}} required/>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
+          <input type="password" id="password" placeholder="********" value={password} onChange={(e) => {setPassword(e.target.value)}} required/>
         </div>
         <h2>Add a picture!</h2>
         <div className={styles.avatarBanner}>
