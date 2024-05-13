@@ -23,7 +23,9 @@ type VenueCard = {
 
 function VenueCard({id, image, alt, title, location, features, price, owner}: VenueCard) {
   const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [venueID, setVenueID] = useState<string>("");
   useEffect(() => {
+    setVenueID(id);
     const name = localStorage.getItem("name");
     if(name === owner) {
       setIsOwner(true);
@@ -37,7 +39,7 @@ function VenueCard({id, image, alt, title, location, features, price, owner}: Ve
         <h1>{title}</h1>
         <h2><span className={styles.locationIcon}></span>{location}</h2>
       </div>
-      {isOwner? <OwnerInteractions/> : ""}
+      {isOwner? <OwnerInteractions id={venueID}/> : ""}
       <FeatureCard {...features}/>
       <div className={styles.priceContainer}>
         <p>Per/Night:</p>

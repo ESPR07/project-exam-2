@@ -5,12 +5,22 @@
   grid-area: owner;
 }
 
-.edit {
+.ownerInteractions button {
   height: 30px;
   width: 30px;
-  background-image: url("/src/assets/editIcon.svg");
+  border: none;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: var(--background);
+}
+
+.ownerInteractions button:hover {
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.edit {
+  background-image: url("/src/assets/editIcon.svg");
 }
 
 .edit:hover {
@@ -18,11 +28,7 @@
 }
 
 .delete {
-  height: 30px;
-  width: 30px;
   background-image: url("/src/assets/deleteIcon.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 
 .delete:hover {

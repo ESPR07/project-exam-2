@@ -88,12 +88,10 @@ function CreateVenuePage() {
         }
       })
     }
-
-    console.log(data);
-    console.log(venueDetails);
+    
     const postVenue = await venueFetch(API_POST_VENUE_URL, venueDetails);
     if(postVenue?.ok !== false) {
-      alert(`Welcome to ${data.name}! We look forward to your visit!`);
+      alert(`Venue ${data.name} has been posted successfully!`);
     }
 
   }
@@ -190,9 +188,9 @@ function CreateVenuePage() {
             <label htmlFor="imgURL">Image Links (Seperate by comma):</label>
             <input type="text" id="imgURL" placeholder="https://www.imagelocation.com/image.jpeg, https://www.imagelocation.com/image.jpeg" onBlur={updateImageLinks}/>
             <div className={styles.imageContainer}>
-              {imageLinks.map((image) => {
+              {imageLinks.map((image, index) => {
                 return(
-                  <img src={image.url} alt="Alternative" onError={fallbackImage}/>
+                  <img key={index} src={image.url} alt="Alternative" onError={fallbackImage}/>
                 )
               })}
             </div>
