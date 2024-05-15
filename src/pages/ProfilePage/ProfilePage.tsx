@@ -5,6 +5,7 @@ import { getProfile } from "../../API/Data/getProfile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import VenueCard from "../../components/VenueCard/VenueCard";
+import EditForm from "../../components/common/EditForm/EditForm";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_PROFILE_PATH = process.env.API_ALL_PROFILES;
@@ -12,6 +13,7 @@ const API_PROFILES_URL = `${API_BASE}${API_PROFILE_PATH}`;
 
 function ProfilePage() {
   const [isBooking, setIsBooking] = useState<boolean>(true);
+  const [isEditProfile, setIsEditProfile] = useState<boolean>(false);
 
   const username = localStorage.getItem("name");
   const token = localStorage.getItem("token");
@@ -35,6 +37,10 @@ function ProfilePage() {
     navigate("create-venue");
   }
 
+  function openEditProfile() {
+    setIsEditProfile(true);
+  }
+
   if(!isLoading && isBooking) {
     return (
       <main className={styles.pageContent}>
@@ -42,7 +48,8 @@ function ProfilePage() {
           className={styles.profileBanner}
           style={{ backgroundImage: `url("${profileInfo?.banner.url}")` }}
         >
-          <Button text="Edit Profile" type="button" event={() => {}} />
+          <Button text="Edit Profile" type="button" event={() => {openEditProfile()}} />
+          <EditForm isOpen={isEditProfile} avatar={profileInfo?.avatar.url} banner={profileInfo?.banner.url} bio={profileInfo?.bio} venueManager={profileInfo?.venueManager}/>
         </div>
         <section className={styles.profileContent}>
           <div className={styles.profileDetails}>
@@ -76,11 +83,7 @@ function ProfilePage() {
           className={styles.profileBanner}
           style={{ backgroundImage: `url("${profileInfo?.banner.url}")` }}
         >
-          <Button text="Edit Profile" type="button" event={() => {
-            console.log("Hello")
-            const navigate = useNavigate();
-            navigate("/");
-          }} />
+          <Button text="Edit Profile" type="button" event={() => {openEditProfile()}} />
         </div>
         <section className={styles.profileContent}>
           <div className={styles.profileDetails}>
