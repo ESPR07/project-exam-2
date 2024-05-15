@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { deleteVenue } from "../../../API/Data/deleteVenue";
 import styles from "./OwnerInteractions.module.css";
 
@@ -7,6 +8,13 @@ const API_VENUES = process.env.API_VENUES;
 function OwnerInteractions({id}: {id: string}) {
   const API_VENUE_DELETE_URL = `${API_BASE}${API_VENUES}/${id}`;
   const {deleteFetch} = deleteVenue();
+
+  const navigation = useNavigate();
+
+  function navigateToEdit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    navigation(`/profile/update-venue/${id}`);
+  }
 
   function deleteVenueEvent(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -24,7 +32,7 @@ function OwnerInteractions({id}: {id: string}) {
 
   return(
     <div className={styles.ownerInteractions}>
-        <button type="button" className={styles.edit}></button>
+        <button type="button" className={styles.edit} onClick={navigateToEdit}></button>
         <button type="button" className={styles.delete} onClick={deleteVenueEvent}></button>
     </div>
   )

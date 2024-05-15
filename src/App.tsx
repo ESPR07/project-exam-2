@@ -6,6 +6,7 @@ import { createContext, useState } from "react"
 import RegisterPage from "./pages/RegisterPage/RegisterPage"
 import ProfilePage from "./pages/ProfilePage/ProfilePage"
 import CreateVenuePage from "./pages/CreateVenuePage/CreateVenuePage"
+import EditVenuePage from "./pages/EditVenuePage/EditVenuePage"
 
 type PrivateRoute = {
   auth: {
@@ -54,6 +55,7 @@ function App() {
         <Route path="register" element={<PrivateRouteReverseCheck auth={{isLoggedIn}} children={<RegisterPage/>}/>}/>
         <Route path="profile" element={<PrivateRoute auth={{isLoggedIn}} children={<ProfilePage/>}/>}/>
         <Route path="profile/create-venue" element={<PrivateRoute auth={{isLoggedIn}} children={<CreateVenuePage/>}/>}/>
+        <Route path="profile/update-venue/:id" element={<PrivateRoute auth={{isLoggedIn}} children={<EditVenuePage/>}/>}/>
       </Route>
     </Routes>
     </AuthContext.Provider>

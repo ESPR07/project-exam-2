@@ -33,7 +33,7 @@ function VenueCard({id, image, alt, title, location, features, price, owner}: Ve
   }, [])
 
   return(
-    <Link to={`venue/${id}`} className={styles.venueContainer}>
+    <Link to={`/venue/${id}`} className={styles.venueContainer}>
       <img src={image} alt={alt}/>
       <div className={styles.infoContainer}>
         <h1>{title}</h1>
