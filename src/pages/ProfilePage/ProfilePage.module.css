@@ -9,9 +9,12 @@
   height: 30vw;
   background-position: center;
   background-size: cover;
+  display: flex;
+  justify-content: end;
+  overflow: hidden;
 }
 
-.profileBanner button {
+.profileBanner button:first-child {
   position: absolute;
   top: 10px;
   right: 10px;

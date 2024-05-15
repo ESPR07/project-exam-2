@@ -6,9 +6,16 @@ import { fakeResponse, loginAuthEvents } from "../../API/Auth/loginAuthEvent";
 import DesktopLogin from "../DesktopLogin";
 import Button from "../common/Button";
 import { AuthContext } from "../../App";
+import { getProfile } from "../../API/Data/getProfile";
+
 const API_BASE = process.env.API_BASE_URL;
 const API_LOGIN_PATH = process.env.API_LOGIN;
 const API_LOGIN_URL = `${API_BASE}${API_LOGIN_PATH}`
+
+const name = localStorage.getItem("name");
+
+const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
+const API_GET_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
 
 function Navbar() {
   const [burgerToggle, setBurgerToggle] = useState<Boolean>(false);
@@ -16,7 +23,17 @@ function Navbar() {
   const [userPassword, setUserPassword] = useState<string>("");
   const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
   const [isErrorMessage, setIsErrorMessage] = useState<boolean>(false);
-  const userAvatar = localStorage.getItem("avatar");
+
+  const profileHeader = {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "X-Noroff-API-Key": process.env.API_KEY,
+    },
+  };
+
+  const {profileInfo} = getProfile(API_GET_PROFILE, profileHeader);
   
   const loginDetails = {
     method: "POST",
@@ -34,7 +51,6 @@ function Navbar() {
   if(!isLoading && !isError && userInfo.accessToken !== "Fake Key") {
     localStorage.setItem("token", userInfo.accessToken);
     localStorage.setItem("name", userInfo.name);
-    localStorage.setItem("avatar", userInfo.avatar.url);
   }
 
 
@@ -69,7 +85,7 @@ function Navbar() {
       <nav className={styles.navContainer}>
         <Link to="/" className={styles.navLogo}></Link>
         <ul className={styles.navList}>
-          <Link to="/profile" className={styles.profileButton} style={{ backgroundImage: `url("${userAvatar}")` }}></Link>
+          <Link to="/profile" className={styles.profileButton} style={{ backgroundImage: `url("${profileInfo?.avatar.url}")` }}></Link>
           <Button text="Logout" type="button" event={logoutEvent}/>
         </ul>
       </nav>
