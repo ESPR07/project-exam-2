@@ -13,8 +13,8 @@ function Homepage() {
   const [searchWord, setSearchWord] = useState<string>("");
   const [isSearched, setIsSearched] = useState<Boolean>(false);
 
-  const defaultURL = `${API_VENUES_URL}?limit=10`;
-  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10`;
+  const defaultURL = `${API_VENUES_URL}?limit=10&_owner=true`;
+  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10&_owner=true`;
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
 
@@ -49,7 +49,7 @@ function Homepage() {
         <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
         {venueList.data.map((venue) => {
           return(
-            <VenueCard key={venue.id} id={venue.id} image={venue.media[0]?.url} alt={venue.media[0]?.alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price}/>
+            <VenueCard key={venue.id} id={venue.id} image={venue.media[0]?.url} alt={venue.media[0]?.alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price} owner={venue.owner.name}/>
           )
         })}
       </section>

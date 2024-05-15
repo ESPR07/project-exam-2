@@ -71,11 +71,6 @@
   margin-top: 10px;
 }
 
-.bookingContainer button:hover {
-  background-color: var(--interactionsText);
-  color: var(--interactions);
-}
-
 @media screen and (max-width: 900px) {
   .pageContent {
     margin-inline: 10px;

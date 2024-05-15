@@ -1,0 +1,36 @@
+.ownerInteractions {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  grid-area: owner;
+}
+
+.ownerInteractions button {
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: var(--background);
+}
+
+.ownerInteractions button:hover {
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.edit {
+  background-image: url("/src/assets/editIcon.svg");
+}
+
+.edit:hover {
+  background-image: url("/src/assets/editIconHover.svg");
+}
+
+.delete {
+  background-image: url("/src/assets/deleteIcon.svg");
+}
+
+.delete:hover {
+  background-image: url("/src/assets/deleteIconHover.svg");
+}

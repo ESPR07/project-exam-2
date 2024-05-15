@@ -17,6 +17,7 @@
   color: var(--background);
   font-size: clamp(0.8rem, 2vw, 1.4rem);
   user-select: none;
+  border-radius: 3px;
 }
 
 @media screen and (max-width: 900px) {

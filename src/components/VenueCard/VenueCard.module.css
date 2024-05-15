@@ -1,7 +1,7 @@
 .venueContainer {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr;
-  grid-template-areas: "image meta price"
+  grid-template-areas: "image meta owner"
                        "image meta price"
                        "image feature price";
   width: 100%;
@@ -77,7 +77,7 @@
 
 @media screen and (max-width: 900px) {
   .venueContainer {
-    grid-template-areas: "image meta price"
+    grid-template-areas: "image meta owner"
                          "image meta price"
                          "feature feature price";
   }

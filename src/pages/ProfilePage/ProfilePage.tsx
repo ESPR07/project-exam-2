@@ -99,7 +99,7 @@ function ProfilePage() {
             <Button text="Create Venue" type="button" event={clickCreateVenue}/>
             {profileInfo?.venues.map((venues) => {
               return(
-                <VenueCard id={venues.id} image={venues.media[0].url} alt={venues.media[0].alt} title={venues.name} location={venues.location.country} features={venues.meta} price={venues.price}/>
+                <VenueCard key={venues.id} id={venues.id} image={venues.media[0].url} alt={venues.media[0].alt} title={venues.name} location={venues.location.country} features={venues.meta} price={venues.price} owner={username}/>
               )
             })}
           </div>
