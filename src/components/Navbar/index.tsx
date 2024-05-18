@@ -6,16 +6,10 @@ import { fakeResponse, loginAuthEvents } from "../../API/Auth/loginAuthEvent";
 import DesktopLogin from "../DesktopLogin";
 import Button from "../common/Button";
 import { AuthContext } from "../../App";
-import { getProfile } from "../../API/Data/getProfile";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_LOGIN_PATH = process.env.API_LOGIN;
-const API_LOGIN_URL = `${API_BASE}${API_LOGIN_PATH}`
-
-const name = localStorage.getItem("name");
-
-const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
-const API_GET_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
+const API_LOGIN_URL = `${API_BASE}${API_LOGIN_PATH}?_holidaze=true`
 
 function Navbar() {
   const [burgerToggle, setBurgerToggle] = useState<Boolean>(false);
@@ -24,16 +18,7 @@ function Navbar() {
   const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
   const [isErrorMessage, setIsErrorMessage] = useState<boolean>(false);
 
-  const profileHeader = {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
-      "X-Noroff-API-Key": process.env.API_KEY,
-    },
-  };
-
-  const {profileInfo} = getProfile(API_GET_PROFILE, profileHeader);
+  const profileInfo = useContext(AuthContext);
   
   const loginDetails = {
     method: "POST",
@@ -46,13 +31,7 @@ function Navbar() {
     })
   }
 
-  const {userInfo, isError, isLoading, APIFetch, setUserInfo} = loginAuthEvents(API_LOGIN_URL, loginDetails);
-
-  if(!isLoading && !isError && userInfo.accessToken !== "Fake Key") {
-    localStorage.setItem("token", userInfo.accessToken);
-    localStorage.setItem("name", userInfo.name);
-  }
-
+  const {APIFetch, setUserInfo} = loginAuthEvents(API_LOGIN_URL, loginDetails);
 
   function emailInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserEmail(e.target.value);
@@ -64,13 +43,16 @@ function Navbar() {
 
   async function loginEvent() {
     const response = await APIFetch();
-    if(response?.ok !== false) {
+    if(response?.ok === true) {
       setIsErrorMessage(false);
       setUserEmail("");
       setUserPassword("");
       setIsLoggedIn(true);
     } else {
       setIsErrorMessage(true);
+      setTimeout(() => {
+        setIsErrorMessage(false);
+      }, 2000)
     }
   }
 
@@ -85,7 +67,7 @@ function Navbar() {
       <nav className={styles.navContainer}>
         <Link to="/" className={styles.navLogo}></Link>
         <ul className={styles.navList}>
-          <Link to="/profile" className={styles.profileButton} style={{ backgroundImage: `url("${profileInfo?.avatar.url}")` }}></Link>
+          <Link to="/profile" className={styles.profileButton} style={{ backgroundImage: `url("${profileInfo?.avatar}")` }}></Link>
           <Button text="Logout" type="button" event={logoutEvent}/>
         </ul>
       </nav>

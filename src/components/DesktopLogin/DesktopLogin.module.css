@@ -12,11 +12,11 @@
 .errorContainer {
   position: absolute;
   right: -60px;
-  bottom: -74px;
+  bottom: -60px;
   background-color: var(--containers);
   z-index: 50;
   border: 2px solid var(--interactions);
-  padding-inline: 5px;
+  padding: 10px;
   color: rgb(211, 9, 9);
 }
 

@@ -15,7 +15,16 @@ type PrivateRoute = {
   children: JSX.Element
 }
 
-export const AuthContext = createContext<{isLoggedIn: boolean, setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>}>({isLoggedIn: false, setIsLoggedIn: () => {}});
+type ProfileContext = {
+  isLoggedIn: boolean,
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
+  name: string | null,
+  avatar: string | null,
+  banner: string | null,
+  isVenueManager: boolean | null,
+}
+
+export const AuthContext = createContext<ProfileContext>({isLoggedIn: false, setIsLoggedIn: () => {}, name: "", avatar: "", banner: "", isVenueManager: false});
 
 function Layout() {
 
@@ -29,8 +38,12 @@ function Layout() {
 
 function App() {
   const authToken = localStorage.getItem("token");
+  const name = localStorage.getItem("name");
+  const avatar = localStorage.getItem("avatar");
+  const banner = localStorage.getItem("banner");
+  const isVenueManager = Boolean(localStorage.getItem("isManager"));
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(authToken? true : false);
-  const contextValue = {isLoggedIn, setIsLoggedIn};
+  const contextValue = {isLoggedIn, setIsLoggedIn, name, avatar, banner, isVenueManager};
 
   function PrivateRoute({auth: {isLoggedIn}, children} : PrivateRoute) {
     if(!isLoggedIn) {

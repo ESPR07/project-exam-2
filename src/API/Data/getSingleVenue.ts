@@ -24,7 +24,7 @@ type SingleVenue = {
         banner: {
           url: string,
           alt: string
-        }
+        },
       },
       dateFrom: string,
       dateTo: string,
@@ -52,6 +52,9 @@ type SingleVenue = {
     continent: string,
     lat: number,
     lng: number
+  },
+  owner: {
+    name: string,
   }
 }
 
@@ -107,6 +110,9 @@ const fakeSingleVenue: SingleVenue = {
     continent: "string",
     lat: 0,
     lng: 0
+  },
+  owner: {
+    name: "string",
   }
 }
 
