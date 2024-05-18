@@ -28,12 +28,12 @@ export const fakeResponse = {
   "accessToken": "Fake Key"
   }
 
-export function loginAuthEvents(url: string, verifictaion: {}) {
+export function loginAuthEvents() {
   const [userInfo, setUserInfo] = useState<LoginResponse>(fakeResponse);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [isError, setIsError] = useState<Boolean>(false);
 
-  async function APIFetch() {
+  async function APIFetch(url: string, verifictaion: {}) {
     try {
       setIsLoading(true);
       setIsError(false);

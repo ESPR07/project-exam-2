@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./RegisterPage.module.css";
 import Button from "../../components/common/Button";
 import { registerAuthEvents } from "../../API/Auth/registerAuthEvent";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { loginAuthEvents } from "../../API/Auth/loginAuthEvent";
+import { AuthContext } from "../../App";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_REGISTER_PATH = process.env.API_REGISTER;
 const API_REGISTER_URL = `${API_BASE}${API_REGISTER_PATH}`
 
+const API_LOGIN_PATH = process.env.API_LOGIN;
+const API_LOGIN_URL = `${API_BASE}${API_LOGIN_PATH}`
+
 type Inputs = {
-  name: string;
+  userName: string;
   email: string;
   password: string;
   avatarURL?: string | null;
@@ -20,7 +25,7 @@ type Inputs = {
 }
 
 const userSchema = yup.object().shape({
-  name: yup.string().required('Name is required').matches(/^\S+$/, 'No spaces allowed'),
+  userName: yup.string().required('Name is required').matches(/^\S+$/, 'No spaces allowed'),
   email: yup.string().email('Invalid email format').required('Email is required').matches(/^[\w.%+-]+@stud\.noroff\.no$/, 'Email must be a @stud.noroff.no address'),
   password: yup.string().required('Password is required'),
   avatarURL: yup.string().url('Invalid URL format').notRequired(),
@@ -29,12 +34,14 @@ const userSchema = yup.object().shape({
 
 function RegisterPage() {
   const [isManager, setIsManager] = useState<boolean>(false);
+  const {setIsLoggedIn} = useContext(AuthContext);
 
   const { register, handleSubmit, formState: { errors }} = useForm<Inputs>({
     resolver: yupResolver<Inputs>(userSchema),
   });
 
   const {RegisterFetch} = registerAuthEvents();
+  const {APIFetch} = loginAuthEvents();
 
   function handleYes() {
     setIsManager(true)
@@ -45,14 +52,13 @@ function RegisterPage() {
   }
 
   async function registerEvent(data: Inputs) {
-    console.log(data);
     const registerDetails = {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify({
-        name: data.name,
+        name: data.userName,
         email: data.email,
         password: data.password,
         avatar: {
@@ -66,10 +72,28 @@ function RegisterPage() {
         venueManager: isManager
       })
     }
+
+    const loginDetails = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password
+      })
+    }
+
     const response = await RegisterFetch(API_REGISTER_URL, registerDetails);
     if(response?.ok !== false) {
-      alert(`Welcome to Holidaze ${data.name}`);
-      redirect("/");
+      const loginResponse = await APIFetch(API_LOGIN_URL, loginDetails);
+      if(loginResponse?.ok === true) {
+        setIsLoggedIn(true);
+      } else {
+        console.log("Login failed.");
+      }
+    } else {
+      console.log("Register Failed");
     }
   }
 
@@ -88,9 +112,9 @@ function RegisterPage() {
         </div>
         <h2>Who are you?</h2>
         <div className={styles.inputContainer}>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="Name Namesson" {...register("name")}/>
-          {errors.name ? <p className={styles.errorText}>{errors.name.message}</p> : ""}
+          <label htmlFor="name">Username</label>
+          <input type="text" id="name" placeholder="Username" {...register("userName")}/>
+          {errors.userName ? <p className={styles.errorText}>{errors.userName.message}</p> : ""}
           <label htmlFor="email">Email</label>
           <input type="email" id="email" placeholder="@stud.noroff.no" {...register("email")}/>
           {errors.email ? <p className={styles.errorText}>{errors.email.message}</p> : ""}
