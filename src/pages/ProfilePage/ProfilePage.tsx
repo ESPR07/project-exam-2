@@ -63,7 +63,7 @@ function ProfilePage() {
           <div className={styles.bookingContainer}>
             <div className={styles.bookingNavigation}>
               <p className={isBooking? styles.active : ""} onClick={() => {setIsBooking(true)}}>My Bookings</p>
-              <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p>
+              {profileInfo?.venueManager? <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p> : ""}
             </div>
             {profileInfo?.bookings.map((booking) => {
               return(
@@ -97,7 +97,7 @@ function ProfilePage() {
           <div className={styles.bookingContainer}>
             <div className={styles.bookingNavigation}>
               <p className={isBooking? styles.active : ""} onClick={() => {setIsBooking(true)}}>My Bookings</p>
-              <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p>
+              {profileInfo?.venueManager? <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p> : ""}
             </div>
             <Button text="Create Venue" type="button" event={clickCreateVenue}/>
             {profileInfo?.venues.map((venues) => {

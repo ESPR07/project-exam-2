@@ -40,7 +40,13 @@ export function loginAuthEvents(url: string, verifictaion: {}) {
       const authEvent = await fetch(url, verifictaion);
       if(authEvent.ok === true) {
         const authResponse = await authEvent.json();
+        console.log(authResponse.data);
         setUserInfo(authResponse.data);
+        localStorage.setItem("token", authResponse.data.accessToken);
+        localStorage.setItem("name", authResponse.data.name);
+        localStorage.setItem("avatar", authResponse.data.avatar.url);
+        localStorage.setItem("banner", authResponse.data.banner.url);
+        localStorage.setItem("isManager", authResponse.data.venueManager);
       } else {
         setIsError(true);
         console.log("Something went wrong!");

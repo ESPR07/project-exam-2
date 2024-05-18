@@ -30,6 +30,7 @@
 
 .errorMessage {
   margin: 0;
+  padding: 10px;
   color: rgb(211, 9, 9);
 }
 

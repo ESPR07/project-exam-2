@@ -21,6 +21,29 @@
   padding-inline: 10px;
 }
 
+.dynamicBox {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--containers);
+  padding: 20px;
+}
+
+.bookingContainer h2 {
+  margin-bottom: 10px;
+}
+
+.bookingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--interactions);
+}
+
+.bookingDates p {
+  text-align: center;
+}
+
 @media screen and (max-width: 900px) {
   .pageContent {
     margin-inline: 0%;
