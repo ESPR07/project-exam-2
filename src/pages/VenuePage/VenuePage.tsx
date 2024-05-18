@@ -14,7 +14,6 @@ function VenuePage() {
   const API_VENUE_URL = `${API_BASE}${API_VENUE_PATH}/${id}?_bookings=true&_owner=true`
 
   const {venueData, isLoading, isError} = getSingleVenue(API_VENUE_URL);
-  console.log(venueData);
   const profileInfo = useContext(AuthContext);
 
   function ManagerView() {
