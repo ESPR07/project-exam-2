@@ -63,6 +63,11 @@
   margin-bottom: 10px;
 }
 
+.errorText {
+  margin: 0;
+  color: red;
+}
+
 @media screen and (max-width: 900px) {
   .registerForm {
     width: 90%;
