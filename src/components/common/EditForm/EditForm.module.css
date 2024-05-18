@@ -60,6 +60,11 @@ form p {
   user-select: none;
 }
 
+.errorText {
+  margin: 0;
+  color: red;
+}
+
 @media screen and (max-width: 900px) {
   .editForm {
     min-width: 50%;
