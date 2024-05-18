@@ -63,7 +63,7 @@ function VenuePage() {
         <p>{venueData.location.country}</p>
         <FeatureCard {...venueData.meta}/>
         <p>{venueData.description}</p>
-        {profileInfo.isVenueManager && venueData.owner.name === profileInfo.name? <ManagerView/> : <BookingForm venueID={venueData.id} bookings={venueData.bookings}/>}
+        {profileInfo.isVenueManager && venueData.owner.name === profileInfo.name? <ManagerView/> : <BookingForm venueID={venueData.id} bookings={venueData.bookings} maxGuests={venueData.maxGuests}/>}
       </section>
     </main>
   )

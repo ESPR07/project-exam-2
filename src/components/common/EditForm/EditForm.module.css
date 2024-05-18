@@ -1,14 +1,21 @@
 .editForm {
+  position: relative;
   padding: 10px 30px;
   display: flex;
   flex-direction: column;
-  min-width: 30%;
+  min-width: 40%;
   background-color: var(--containers);
   z-index: 100;
+  border-radius: 3px 0px 0px 3px;
+}
+
+.editForm button:last-child {
+  position: absolute;
+  left: -15px;
 }
 
 .closed {
-  transform: translateX(100%);
+  transform: translateX(110%);
   transition: transform 0.5s ease-in;
 }
 
@@ -51,4 +58,12 @@ form p {
   margin-left: 20px;
   margin-right: 5px;
   user-select: none;
+}
+
+@media screen and (max-width: 900px) {
+  .editForm {
+    min-width: 50%;
+    position: absolute;
+
+  }
 }

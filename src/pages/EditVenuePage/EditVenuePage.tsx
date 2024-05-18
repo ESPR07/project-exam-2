@@ -6,11 +6,11 @@ import { getSingleVenue } from "../../API/Data/getSingleVenue";
 import { useParams } from "react-router-dom";
 import { updateVenue } from "../../API/Data/updateVenue";
 
-type ImageLinks = [
-  {
-    url: string,
-  }
-]
+type ImageLink = {
+  url: string | undefined
+}
+
+type ImageLinks = ImageLink[]
 
 type FormResponse = {
   address: string,
@@ -43,24 +43,22 @@ function EditVenuePage() {
 
   const [formPage, setFormPage] = useState<number>(0);
   const [imageLinksFetch, setImageLinksFetch] = useState<ImageLinks>([{url: ""}]);
-  const [imageLinks, setImageLinks] = useState<string[]>([]);
+  const [isimageError, setIsImageError] = useState<boolean>(false);
   const pageRef = useRef<HTMLFormElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
+  console.log(imageLinksFetch);
 
   const mediaLinkFetch: ImageLinks = [{url: ""}];
   mediaLinkFetch.pop();
-
-  const mediaLink: string[] = [];
-  mediaLink.pop();
   
   venueData.media.map((image) => {
     mediaLinkFetch.push({url: image.url});
-    mediaLink.push(image.url);
   })
 
   useEffect(() => {
     if(!isLoading && !isError) {
       setImageLinksFetch(mediaLinkFetch);
-      setImageLinks(mediaLink);
     }
   }, [isLoading])
 
@@ -133,14 +131,31 @@ function EditVenuePage() {
     setFormPage(index)
   }
 
-  function updateImageLinks(e: React.FocusEvent<HTMLInputElement>) {
-    const formattedArray: string[] = [];
-    const handleLinks = e.target.value.split(",");
-    formattedArray.pop();
-    handleLinks.map((link) => {
-      formattedArray.push(link);
-    });
-    setImageLinks(formattedArray);
+  function updateImageLinks() {
+    if(imageInputRef.current) {
+      try {
+        setIsImageError(false);
+
+        new URL(imageInputRef.current.value);
+
+        const imageInputLink: ImageLink = {
+          url: imageInputRef.current?.value
+        }
+  
+        setImageLinksFetch(oldArray => [...oldArray, imageInputLink]);
+  
+        imageInputRef.current.value = "";
+
+      } catch(error) {
+
+        setIsImageError(true);
+
+      }
+    }
+  }
+
+  function removeImageLink(index: number) {
+    setImageLinksFetch([...imageLinksFetch.slice(0, index), ...imageLinksFetch.slice(index + 1)]);
   }
 
   function fallbackImage(e: React.SyntheticEvent<HTMLImageElement, Event>) {
@@ -208,11 +223,18 @@ function EditVenuePage() {
             </div>
             <div className={styles.container} id="form-2" onClick={() => {setFormPage(2)}}>
               <label htmlFor="imgURL">Image Links (Seperate by comma):</label>
-              <input type="text" id="imgURL" defaultValue={mediaLink} onBlur={updateImageLinks}/>
-              <div className={styles.imageContainer}>
-                {imageLinks.map((image, index) => {
+              <div className={styles.imageInput}>
+                <input type="text" id="imgURL" placeholder="https://www.imagelocation.com/image.jpeg" ref={imageInputRef}/>
+                <Button text="+" type="button" event={() => {updateImageLinks()}}/>
+              </div>
+            {isimageError? <p className={styles.errorText}>URL is invalid</p> : ""}
+              <div className={styles.imageSection}>
+                {imageLinksFetch.map((image, index) => {
                   return(
-                    <img key={index} src={image} alt="Alternative" onError={fallbackImage}/>
+                    <div key={index} className={styles.imageContainer}>
+                      <img src={image.url} alt="Alternative" onError={fallbackImage}/>
+                      <Button text="X" type="button" event={() => {removeImageLink(index)}}/>
+                    </div>
                   )
                 })}
               </div>

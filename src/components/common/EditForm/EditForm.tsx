@@ -5,6 +5,7 @@ import { updateUserEvent } from "../../../API/Auth/updateUserEvent";
 
 type EditInfo = {
   isOpen: boolean,
+  changeOpen: React.Dispatch<React.SetStateAction<boolean>>,
   avatar: string | undefined,
   banner: string | undefined,
   bio: string | undefined,
@@ -17,8 +18,7 @@ const API_BASE = process.env.API_BASE_URL;
 const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
 const API_UPDATE_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
 
-function EditForm({isOpen, avatar, banner, bio, venueManager}: EditInfo) {
-
+function EditForm({isOpen, changeOpen, avatar, banner, bio, venueManager}: EditInfo) {
   const [isManager, setIsManager] = useState<boolean>(venueManager as boolean);
   const [avatarURL, setAvatarURL] = useState<string>(avatar as string);
   const [bannerURL, setBannerURL] = useState<string>(banner as string);
@@ -72,6 +72,14 @@ function EditForm({isOpen, avatar, banner, bio, venueManager}: EditInfo) {
     const updateUser = await updateUserFetch(API_UPDATE_PROFILE, profileDetails);
     if(updateUser?.ok === true) {
       alert("Profile has been updated!");
+      localStorage.removeItem("avatar");
+      localStorage.removeItem("banner");
+      localStorage.removeItem("isManager");
+
+      localStorage.setItem("avatar", avatarURL);
+      localStorage.setItem("banner", bannerURL);
+      localStorage.setItem("isManager", String(isManager));
+
       window.location.reload();
     } else {
       alert("Something went wrong, please try again!");
@@ -96,6 +104,7 @@ function EditForm({isOpen, avatar, banner, bio, venueManager}: EditInfo) {
         <label htmlFor="no"></label>
       </div>
       <Button text="Update Profile" type="submit" event={() => {}}/>
+      <Button text="X" type="button" event={() => {changeOpen(false)}}/>
     </form>
   )
 }

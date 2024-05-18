@@ -13,6 +13,7 @@
 .carouselContainer img {
   width: 70vw;
   max-height: 500px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
