@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./VenuePage.module.css";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import FeatureCard from "../../components/common/FeatureCards/FeatureCards";
@@ -15,6 +15,12 @@ function VenuePage() {
 
   const {venueData, isLoading, isError} = getSingleVenue(API_VENUE_URL);
   const profileInfo = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function goBack(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    navigate(-1);
+  }
 
   function ManagerView() {
     return(
@@ -41,7 +47,7 @@ function VenuePage() {
   if(isLoading) {
     return(
       <>
-      <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+      <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
       <h1>Loading...</h1>
       </>
     )
@@ -49,14 +55,14 @@ function VenuePage() {
 
   if(isError) {
     <>
-    <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+    <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
     <h1>Oops something went wrong!</h1>
     </>
   }
 
   return(
     <main className={styles.pageContent}>
-      <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+      <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
       <ImageCarousel images={venueData.media}/>
       <section className={styles.venueInfo}>
         <h1>{venueData.name}</h1>
