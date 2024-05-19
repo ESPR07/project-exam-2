@@ -24,6 +24,10 @@
   transition: transform 0.5s ease-in;
 }
 
+.removed {
+  display: none;
+}
+
 form p {
   margin: 0;
 }

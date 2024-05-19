@@ -14,6 +14,7 @@ const API_PROFILES_URL = `${API_BASE}${API_PROFILE_PATH}`;
 function ProfilePage() {
   const [isBooking, setIsBooking] = useState<boolean>(true);
   const [isEditProfile, setIsEditProfile] = useState<boolean>(false);
+  const [isRemoved, setIsRemoved] = useState<boolean>(true);
 
   const username = localStorage.getItem("name");
   const token = localStorage.getItem("token");
@@ -38,7 +39,10 @@ function ProfilePage() {
   }
 
   function openEditProfile() {
-    setIsEditProfile(true);
+    setIsRemoved(false);
+    setTimeout(() => {
+      setIsEditProfile(true);
+    }, 200)
   }
 
   if(!isLoading && isBooking) {
@@ -49,7 +53,7 @@ function ProfilePage() {
           style={{ backgroundImage: `url("${profileInfo?.banner.url}")` }}
         >
           <Button text="Edit Profile" type="button" event={() => {openEditProfile()}} />
-          <EditForm isOpen={isEditProfile} name={profileInfo?.name} avatar={profileInfo?.avatar.url} banner={profileInfo?.banner.url} bio={profileInfo?.bio} venueManager={profileInfo?.venueManager} changeOpen={setIsEditProfile}/>
+          <EditForm isOpen={isEditProfile} removed={isRemoved}  avatar={profileInfo?.avatar.url} banner={profileInfo?.banner.url} bio={profileInfo?.bio} venueManager={profileInfo?.venueManager} changeOpen={setIsEditProfile} setIsRemoved={setIsRemoved}/>
         </div>
         <section className={styles.profileContent}>
           <div className={styles.profileDetails}>
