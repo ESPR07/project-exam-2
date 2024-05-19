@@ -40,7 +40,6 @@ export function loginAuthEvents() {
       const authEvent = await fetch(url, verifictaion);
       if(authEvent.ok === true) {
         const authResponse = await authEvent.json();
-        console.log(authResponse.data);
         setUserInfo(authResponse.data);
         localStorage.setItem("token", authResponse.data.accessToken);
         localStorage.setItem("name", authResponse.data.name);
@@ -53,7 +52,7 @@ export function loginAuthEvents() {
       }
       return authEvent;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

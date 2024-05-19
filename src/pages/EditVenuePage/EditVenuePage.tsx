@@ -47,8 +47,6 @@ function EditVenuePage() {
   const pageRef = useRef<HTMLFormElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  console.log(imageLinksFetch);
-
   const mediaLinkFetch: ImageLinks = [{url: ""}];
   mediaLinkFetch.pop();
   
