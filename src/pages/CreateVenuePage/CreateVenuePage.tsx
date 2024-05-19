@@ -205,7 +205,7 @@ function CreateVenuePage() {
             <input type="text" id="lng" placeholder="0" {...register("lng")}/>
           </div>
           <div className={styles.container} id="form-2" onClick={() => {setFormPage(2)}}>
-            <label htmlFor="imgURL">Image Links (Seperate by comma):</label>
+            <label htmlFor="imgURL">Image Links:</label>
             <div className={styles.imageInput}>
               <input type="text" id="imgURL" placeholder="https://www.imagelocation.com/image.jpeg" ref={imageInputRef}/>
               <Button text="+" type="button" event={() => {updateImageLinks()}}/>
