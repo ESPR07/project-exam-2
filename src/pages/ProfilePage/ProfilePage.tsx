@@ -49,7 +49,7 @@ function ProfilePage() {
           style={{ backgroundImage: `url("${profileInfo?.banner.url}")` }}
         >
           <Button text="Edit Profile" type="button" event={() => {openEditProfile()}} />
-          <EditForm isOpen={isEditProfile} avatar={profileInfo?.avatar.url} banner={profileInfo?.banner.url} bio={profileInfo?.bio} venueManager={profileInfo?.venueManager} changeOpen={setIsEditProfile}/>
+          <EditForm isOpen={isEditProfile} name={profileInfo?.name} avatar={profileInfo?.avatar.url} banner={profileInfo?.banner.url} bio={profileInfo?.bio} venueManager={profileInfo?.venueManager} changeOpen={setIsEditProfile}/>
         </div>
         <section className={styles.profileContent}>
           <div className={styles.profileDetails}>
