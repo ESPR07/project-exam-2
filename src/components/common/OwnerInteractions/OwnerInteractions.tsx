@@ -13,11 +13,13 @@ function OwnerInteractions({id}: {id: string}) {
 
   function navigateToEdit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    e.stopPropagation();
     navigation(`/profile/update-venue/${id}`);
   }
 
   function deleteVenueEvent(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    e.stopPropagation();
     const header = {
       method: "DELETE",
       headers: {

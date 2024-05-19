@@ -33,6 +33,18 @@
   padding-inline: 10px;
 }
 
+.venueInfo h1 {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.venueInfo p {
+  margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
 .venueInfo div:first-of-type {
   margin-inline: 0;
 }
@@ -63,5 +75,9 @@
 @media screen and (max-width: 900px) {
   .pageContent {
     margin-inline: 0%;
+  }
+
+  .venueInfo p {
+    margin-bottom: 20px;
   }
 }

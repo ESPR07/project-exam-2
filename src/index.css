@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Exo';
+  src: url("/src/assets/Exo2-VariableFont_wght.ttf");
+}
+
 :root {
   --background: rgba(247, 243, 233, 1);
   --textColor: rgba(0, 0, 0, 1);
@@ -5,7 +10,7 @@
   --infoBox: rgba(94, 170, 168, 1);
   --interactions: rgba(252, 128, 89, 1);
   --interactionsText: rgba(54, 56, 83, 1);
-  --mainFont: 'Calibri', "Candara", "Segoe", "Segoe UI", "Optima", Arial, sans-serif; 
+  --mainFont: 'Exo', "Candara", "Segoe", "Segoe UI", "Optima", Arial, sans-serif; 
 }
 
 body{

@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./BookingCard.module.css";
 import FeatureCard from "../common/FeatureCards/FeatureCards";
+import { useState } from "react";
 
 type Bookings =   {
   id: string,
@@ -40,11 +41,21 @@ type Bookings =   {
 }
 
 function BookingCard({bookings} : {bookings: Bookings}) {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const bookingVenue = bookings.venue;
 
+  function clickEvent(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    setIsClicked(true);
+    setTimeout(() => {
+      navigate(`/venue/${bookingVenue.id}`)
+    }, 800)
+  }
+
   return(
-  <Link to={`/venue/${bookingVenue.id}`} className={styles.venueContainer}>
+  <Link to={`/venue/${bookingVenue.id}`} className={`${styles.venueContainer} ${!isClicked? styles.notClicked : styles.clicked}`} onClick={clickEvent}>
     <img src={bookingVenue.media[0].url} alt={bookingVenue.media[0].alt}/>
     <div className={styles.infoContainer}>
       <h1>{bookingVenue.name}</h1>
