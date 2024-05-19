@@ -18,7 +18,7 @@ export function updateUserEvent() {
       }
       return authEvent;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

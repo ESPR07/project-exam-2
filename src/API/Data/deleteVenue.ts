@@ -12,10 +12,10 @@ export function deleteVenue() {
       if(authEvent.ok === true) {
         alert("Venue has been deleted.");
       } else {
-        console.log(authEvent.status);
+        console.log(await authEvent.json());
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

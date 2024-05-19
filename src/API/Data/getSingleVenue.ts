@@ -134,7 +134,7 @@ export function getSingleVenue(url: string) {
           console.log("Something went wrong!");
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setIsError(true);
       } finally {
         setIsLoading(false);

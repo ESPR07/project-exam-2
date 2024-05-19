@@ -89,10 +89,10 @@ function RegisterPage() {
       if(loginResponse?.ok === true) {
         setIsLoggedIn(true);
       } else {
-        console.log("Login failed.");
+        console.error("Login failed.");
       }
     } else {
-      console.log("Register Failed");
+      console.error("Register Failed");
     }
   }
 
