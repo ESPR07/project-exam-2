@@ -46,16 +46,10 @@ function App() {
   const contextValue = {isLoggedIn, setIsLoggedIn, name, avatar, banner, isVenueManager};
 
   function PrivateRoute({auth: {isLoggedIn}, children} : PrivateRoute) {
-    if(!isLoggedIn) {
-      alert("You need to be logged in to access this page, redirecting to homepage.")
-    }
     return isLoggedIn ? children : <Navigate to="/" />
   }
 
   function PrivateRouteReverseCheck({auth: {isLoggedIn}, children} : PrivateRoute) {
-    if(isLoggedIn) {
-      alert("You are already logged in, redirecting to homepage.");
-    }
     return !isLoggedIn ? children : <Navigate to="/" />
   }
 

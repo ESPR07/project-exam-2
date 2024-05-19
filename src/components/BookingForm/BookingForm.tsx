@@ -43,7 +43,7 @@ const API_BOOKING_PATH = process.env.API_BOOKINGS;
 const API_POST_BOOKING_URL = `${API_BASE}${API_BOOKING_PATH}`
 
 
-function BookingForm({venueID, bookings}: {venueID: string, bookings: Bookings}) {
+function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings: Bookings, maxGuests: number}) {
   const [startDate, setStartDate] = useState<Value>(defaultValue);
   const [endDate, setEndDate] = useState<Value>(defaultValue);
   const [bookedDates, setBookedDates] = useState<string[]>([]);
@@ -151,8 +151,8 @@ function BookingForm({venueID, bookings}: {venueID: string, bookings: Bookings})
           </div>
         </div>
         {bookingError? <p className={styles.bookingError}>Dates for bookings can't overlap.</p> : ""}
-        <label htmlFor="guests" className={styles.guestsLabel}>Guests:</label>
-        <input type="number" name="guests" id="guests" className={styles.guestsInput} value={guests} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        <label htmlFor="guests" className={styles.guestsLabel}>Guests (Max {maxGuests}):</label>
+        <input type="number" name="guests" id="guests" className={styles.guestsInput} value={guests} min={1} max={maxGuests} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setGuests(Number(e.target.value))
         }}/>
         <Button text="Place Booking" type="submit" event={() => {}}/>

@@ -106,24 +106,36 @@
   user-select: none;
 }
 
-.imageContainer {
+.imageInput input {
+  width: 90%;
+}
+
+.imageSection {
   display: flex;
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
 }
 
+.imageContainer {
+  position: relative;
+  
+}
+
 .imageContainer img {
   max-width: 300px;
   max-height: 250px;
+  height: 100%;
   object-fit: cover;
 }
 
+.imageContainer button {
+position: absolute;
+right: 0;
+}
+
 .container button {
-  position: absolute;
-  bottom: 20px;
-  left: calc(50% - 65px);
-  height: 40px;
+  margin: 10px;
 }
 
 .navigationContainer {

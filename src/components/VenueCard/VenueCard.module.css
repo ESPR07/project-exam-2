@@ -9,6 +9,23 @@
   padding-block: 10px;
   text-decoration: none;
   color: var(--textColor);
+  background-image: url("/src/assets/flightHover.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.notClicked {
+  background-position: right 50vw top 50%;
+  transition: background-position 1s ease-in-out;
+}
+
+.notClicked:hover {
+  background-position: right 44vw top 50%;
+}
+
+.clicked {
+  background-position: right -15vw top 50%;
+  transition: background-position 1s ease-in-out;
 }
 
 .venueContainer img {
@@ -34,12 +51,12 @@
 }
 
 .infoContainer h1 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .infoContainer h2 {
   display: flex;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: clamp(0.7rem, 2.5vw, 1.2rem);
   font-weight: 500;
 }
 
@@ -68,11 +85,11 @@
 
 .priceContainer p:first-child {
   color: var(--interactions);
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.7rem, 3vw, 1.5rem);
 }
 
 .priceContainer p:last-child {
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-size: clamp(1rem, 3vw, 1.7rem);
 }
 
 @media screen and (max-width: 900px) {
@@ -80,6 +97,12 @@
     grid-template-areas: "image meta owner"
                          "image meta price"
                          "feature feature price";
+                         background-image: none;
+  }
+
+  .locationIcon {
+    width: 15px;
+    height: 15px;
   }
 
   .venueContainer img {

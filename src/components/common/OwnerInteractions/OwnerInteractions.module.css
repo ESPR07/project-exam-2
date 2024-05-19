@@ -3,6 +3,7 @@
   justify-content: end;
   gap: 10px;
   grid-area: owner;
+  z-index: 100;
 }
 
 .ownerInteractions button {
@@ -33,4 +34,11 @@
 
 .delete:hover {
   background-image: url("/src/assets/deleteIconHover.svg");
+}
+
+@media screen and (max-width: 900px) {
+  .ownerInteractions button {
+    height: 25px;
+    width: 25px;
+  }
 }

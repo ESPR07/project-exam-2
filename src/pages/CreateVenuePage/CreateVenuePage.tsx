@@ -4,11 +4,11 @@ import styles from "./CreateVenuePage.module.css";
 import { useForm } from "react-hook-form";
 import { postVenue } from "../../API/Data/postVenue";
 
-type ImageLinks = [
-  {
-    url: string,
-  },
-]
+type ImageLink = {
+  url: string | undefined
+}
+
+type ImageLinks = ImageLink[]
 
 type FormResponse = {
   address: string,
@@ -35,11 +35,12 @@ const API_POST_VENUE_URL = `${API_BASE}${API_VENUES_PATH}`
 function CreateVenuePage() {
   const [formPage, setFormPage] = useState<number>(0);
   const [imageLinks, setImageLinks] = useState<ImageLinks>([{url: "/src/assets/banner.webp"}]);
+  const [isimageError, setIsImageError] = useState<boolean>(false);
   const pageRef = useRef<HTMLFormElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   const {register, reset, handleSubmit, formState: { errors }} = useForm();
   const {venueFetch} = postVenue();
-
 
   useEffect(() => {
     setFormPage(0);
@@ -112,14 +113,33 @@ function CreateVenuePage() {
     setFormPage(index)
   }
 
-  function updateImageLinks(e: React.FocusEvent<HTMLInputElement>) {
-    const formattedArray: ImageLinks = [{url: "string"}]
-    const handleLinks = e.target.value.split(",");
-    formattedArray.pop();
-    handleLinks.map((link) => {
-      formattedArray.push({url: link})
-    });
-    setImageLinks(formattedArray);
+  function updateImageLinks() {
+    if(imageInputRef.current) {
+      try {
+        setIsImageError(false);
+
+        new URL(imageInputRef.current.value);
+
+        const imageInputLink: ImageLink = {
+          url: imageInputRef.current?.value
+        }
+  
+        const filteredImageLinks = imageLinks.filter(link => link.url !== "/src/assets/banner.webp");
+  
+        setImageLinks([...filteredImageLinks, imageInputLink]);
+  
+        imageInputRef.current.value = "";
+
+      } catch(error) {
+
+        setIsImageError(true);
+
+      }
+    }
+  }
+
+  function removeImageLink(index: number) {
+    setImageLinks([...imageLinks.slice(0, index), ...imageLinks.slice(index + 1)]);
   }
 
   function fallbackImage(e: React.SyntheticEvent<HTMLImageElement, Event>) {
@@ -186,14 +206,21 @@ function CreateVenuePage() {
           </div>
           <div className={styles.container} id="form-2" onClick={() => {setFormPage(2)}}>
             <label htmlFor="imgURL">Image Links (Seperate by comma):</label>
-            <input type="text" id="imgURL" placeholder="https://www.imagelocation.com/image.jpeg, https://www.imagelocation.com/image.jpeg" onBlur={updateImageLinks}/>
-            <div className={styles.imageContainer}>
-              {imageLinks.map((image, index) => {
-                return(
-                  <img key={index} src={image.url} alt="Alternative" onError={fallbackImage}/>
-                )
-              })}
+            <div className={styles.imageInput}>
+              <input type="text" id="imgURL" placeholder="https://www.imagelocation.com/image.jpeg" ref={imageInputRef}/>
+              <Button text="+" type="button" event={() => {updateImageLinks()}}/>
             </div>
+            {isimageError? <p className={styles.errorText}>URL is invalid</p> : ""}
+            <div className={styles.imageSection}>
+                {imageLinks.map((image, index) => {
+                  return(
+                    <div key={index} className={styles.imageContainer}>
+                      <img src={image.url} alt="Alternative" onError={fallbackImage}/>
+                      <Button text="X" type="button" event={() => {removeImageLink(index)}}/>
+                    </div>
+                  )
+                })}
+              </div>
             <Button text="Submit Venue" type="submit" event={() => {}}/>
           </div>
         </form>

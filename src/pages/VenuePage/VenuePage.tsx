@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./VenuePage.module.css";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import FeatureCard from "../../components/common/FeatureCards/FeatureCards";
@@ -14,8 +14,13 @@ function VenuePage() {
   const API_VENUE_URL = `${API_BASE}${API_VENUE_PATH}/${id}?_bookings=true&_owner=true`
 
   const {venueData, isLoading, isError} = getSingleVenue(API_VENUE_URL);
-  console.log(venueData);
   const profileInfo = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function goBack(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    navigate(-1);
+  }
 
   function ManagerView() {
     return(
@@ -42,7 +47,7 @@ function VenuePage() {
   if(isLoading) {
     return(
       <>
-      <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+      <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
       <h1>Loading...</h1>
       </>
     )
@@ -50,21 +55,21 @@ function VenuePage() {
 
   if(isError) {
     <>
-    <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+    <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
     <h1>Oops something went wrong!</h1>
     </>
   }
 
   return(
     <main className={styles.pageContent}>
-      <Link to="/" className={styles.backButton}><span className={styles.backIcon}></span>Back</Link>
+      <button className={styles.backButton} onClick={goBack}><span className={styles.backIcon}></span>Back</button>
       <ImageCarousel images={venueData.media}/>
       <section className={styles.venueInfo}>
         <h1>{venueData.name}</h1>
         <p>{venueData.location.country}</p>
         <FeatureCard {...venueData.meta}/>
         <p>{venueData.description}</p>
-        {profileInfo.isVenueManager && venueData.owner.name === profileInfo.name? <ManagerView/> : <BookingForm venueID={venueData.id} bookings={venueData.bookings}/>}
+        {profileInfo.isVenueManager && venueData.owner.name === profileInfo.name? <ManagerView/> : <BookingForm venueID={venueData.id} bookings={venueData.bookings} maxGuests={venueData.maxGuests}/>}
       </section>
     </main>
   )

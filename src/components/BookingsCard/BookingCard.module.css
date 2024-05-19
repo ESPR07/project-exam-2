@@ -9,6 +9,23 @@
   padding-block: 10px;
   text-decoration: none;
   color: var(--textColor);
+  background-image: url("/src/assets/flightHover.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.notClicked {
+  background-position: right 50vw top 50%;
+  transition: background-position 1s ease-in-out;
+}
+
+.notClicked:hover {
+  background-position: right 44vw top 50%;
+}
+
+.clicked {
+  background-position: right -15vw top 50%;
+  transition: background-position 1s ease-in-out;
 }
 
 .venueContainer img {
@@ -34,12 +51,13 @@
 }
 
 .infoContainer h1 {
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .infoContainer h2 {
   display: flex;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  align-items: center;
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem);
   font-weight: 500;
 }
 
@@ -68,7 +86,7 @@
 .dateContainer p {
   margin: 0;
   text-wrap: nowrap;
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.8rem, 3vw, 1.5rem);
 }
 
 .dateContainer p:first-child {
@@ -93,5 +111,9 @@
 
   .venueContainer img {
     margin-bottom: 10px;
+  }
+
+  .guestsAmount {
+    font-size: 0.7rem;
   }
 }

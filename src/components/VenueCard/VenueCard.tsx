@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FeatureCard from "../common/FeatureCards/FeatureCards";
 import styles from "./VenueCard.module.css";
 import { useEffect, useState } from "react";
@@ -24,6 +24,9 @@ type VenueCard = {
 function VenueCard({id, image, alt, title, location, features, price, owner}: VenueCard) {
   const [isOwner, setIsOwner] = useState<boolean>(false);
   const [venueID, setVenueID] = useState<string>("");
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     setVenueID(id);
     const name = localStorage.getItem("name");
@@ -32,8 +35,16 @@ function VenueCard({id, image, alt, title, location, features, price, owner}: Ve
     }
   }, [])
 
+  function clickEvent(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    setIsClicked(true);
+    setTimeout(() => {
+      navigate(`/venue/${id}`)
+    }, 800)
+  }
+
   return(
-    <Link to={`/venue/${id}`} className={styles.venueContainer}>
+    <Link to={`/venue/${id}`} className={`${styles.venueContainer} ${!isClicked? styles.notClicked : styles.clicked}`} onClick={clickEvent}>
       <img src={image} alt={alt}/>
       <div className={styles.infoContainer}>
         <h1>{title}</h1>

@@ -31,7 +31,7 @@ function Navbar() {
     })
   }
 
-  const {APIFetch, setUserInfo} = loginAuthEvents(API_LOGIN_URL, loginDetails);
+  const {APIFetch, setUserInfo} = loginAuthEvents();
 
   function emailInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserEmail(e.target.value);
@@ -42,7 +42,7 @@ function Navbar() {
   }
 
   async function loginEvent() {
-    const response = await APIFetch();
+    const response = await APIFetch(API_LOGIN_URL, loginDetails);
     if(response?.ok === true) {
       setIsErrorMessage(false);
       setUserEmail("");
