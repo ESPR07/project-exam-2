@@ -29,14 +29,14 @@ const userSchema = yup.object().shape({
   bio: yup.string()
 })
 
-const name = localStorage.getItem("name");
-
 const API_BASE = process.env.API_BASE_URL;
 const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
-const API_UPDATE_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
+
 
 function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bio, venueManager}: EditInfo) {
   const [isManager, setIsManager] = useState<boolean>(venueManager as boolean);
+
+  const API_UPDATE_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
 
   const {updateUserFetch} = updateUserEvent();
   const { register, handleSubmit, formState: { errors }} = useForm<Inputs>({
@@ -92,8 +92,6 @@ function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bi
       localStorage.setItem("isManager", String(isManager));
 
       window.location.reload();
-    } else {
-      alert("Something went wrong, please try again!");
     }
   }
 
