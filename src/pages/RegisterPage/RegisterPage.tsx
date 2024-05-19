@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import styles from "./RegisterPage.module.css";
 import Button from "../../components/common/Button";
 import { registerAuthEvents } from "../../API/Auth/registerAuthEvent";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
