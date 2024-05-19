@@ -12,7 +12,9 @@ type EditInfo = {
   avatar: string | undefined,
   banner: string | undefined,
   bio: string | undefined,
-  venueManager: boolean | undefined
+  venueManager: boolean | undefined,
+  removed: boolean,
+  setIsRemoved: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Inputs = {
@@ -33,7 +35,7 @@ const API_BASE = process.env.API_BASE_URL;
 const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
 const API_UPDATE_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
 
-function EditForm({isOpen, changeOpen, avatar, banner, bio, venueManager}: EditInfo) {
+function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bio, venueManager}: EditInfo) {
   const [isManager, setIsManager] = useState<boolean>(venueManager as boolean);
 
   const {updateUserFetch} = updateUserEvent();
@@ -47,6 +49,13 @@ function EditForm({isOpen, changeOpen, avatar, banner, bio, venueManager}: EditI
 
   function handleNo() {
     setIsManager(false);
+  }
+
+  function closeEdit() {
+    changeOpen(false);
+    setTimeout(() => {
+      setIsRemoved(true)
+    }, 600);
   }
 
   async function onSubmit(data: any) {
@@ -89,7 +98,7 @@ function EditForm({isOpen, changeOpen, avatar, banner, bio, venueManager}: EditI
   }
 
   return (
-    <form className={`${styles.editForm} ${isOpen? styles.open : styles.closed}`} onSubmit={handleSubmit(onSubmit)}>
+    <form className={`${styles.editForm} ${isOpen? styles.open : styles.closed} ${removed? styles.removed : ""}`} onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="avatar">New Avatar URL:</label>
       <input type="text" id="avatar" defaultValue={avatar} {...register("avatar")}/>
       {errors.avatar ? <p className={styles.errorText}>{errors.avatar?.message}</p> : ""}
@@ -108,7 +117,7 @@ function EditForm({isOpen, changeOpen, avatar, banner, bio, venueManager}: EditI
         <label htmlFor="no"></label>
       </div>
       <Button text="Update Profile" type="submit" event={() => {}}/>
-      <Button text="X" type="button" event={() => {changeOpen(false)}}/>
+      <Button text="X" type="button" event={closeEdit}/>
     </form>
   )
 }
