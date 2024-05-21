@@ -13,6 +13,10 @@
   --mainFont: 'Exo', "Candara", "Segoe", "Segoe UI", "Optima", Arial, sans-serif; 
 }
 
+html, body {
+  overflow-x: hidden
+}
+
 body{
   margin: 0;
   box-sizing: border-box;
