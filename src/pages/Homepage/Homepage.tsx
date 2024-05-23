@@ -4,6 +4,7 @@ import Banner from "../../components/Banner/Banner";
 import Searchbar from "../../components/Searchbar/Searchbar";
 import VenueCard from "../../components/VenueCard/VenueCard";
 import styles from "./Homepage.module.css";
+import Button from "../../components/common/Button";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_VENUES_PATH = process.env.API_VENUES;
@@ -12,11 +13,21 @@ const API_VENUES_URL = `${API_BASE}${API_VENUES_PATH}`
 function Homepage() {
   const [searchWord, setSearchWord] = useState<string>("");
   const [isSearched, setIsSearched] = useState<Boolean>(false);
+  const [currentPage, setcurrentPage] = useState<number>(1);
 
-  const defaultURL = `${API_VENUES_URL}?limit=10&_owner=true`;
-  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10&_owner=true`;
+  const defaultURL = `${API_VENUES_URL}?limit=10&page=${currentPage}&_owner=true`;
+  const searchedURL = `${API_VENUES_URL}/search?q=${searchWord}&limit=10&${currentPage}&_owner=true`;
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
+
+  function increaseVenueAmount() {
+    setcurrentPage(prevAmount => prevAmount + 1);
+  }
+
+  function decreaseVenueAmount() {
+    setcurrentPage(prevAmount => prevAmount - 1);
+  }
+
 
   if(isLoading) {
     return(
@@ -52,6 +63,14 @@ function Homepage() {
             <VenueCard key={venue.id} id={venue.id} image={venue.media[0]?.url} alt={venue.media[0]?.alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price} owner={venue.owner.name}/>
           )
         })}
+        <div className={styles.pageCounter}>
+          <p>Page:</p>
+          <p>{currentPage}/{venueList.meta.pageCount}</p>
+        </div>
+        <div className={styles.pageCountInteraction}>
+          <Button text="Prev Page" type="button" event={() => {decreaseVenueAmount()}}/>
+          <Button text="Next Page" type="button" event={() => {increaseVenueAmount()}}/>
+        </div>
       </section>
     </main>
   )

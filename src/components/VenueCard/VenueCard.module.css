@@ -9,7 +9,7 @@
   padding-block: 10px;
   text-decoration: none;
   color: var(--textColor);
-  background-image: url("/src/assets/flightHover2.webp");
+  background-image: url("/src/assets/flightHover.webp");
   background-size: 30vw;
   background-repeat: no-repeat;
 }
