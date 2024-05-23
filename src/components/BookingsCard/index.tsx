@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./BookingCard.module.css";
-import FeatureCard from "../common/FeatureCards/FeatureCards";
+import FeatureCard from "../common/FeatureCards";
 import { useState } from "react";
 
 type Bookings =   {

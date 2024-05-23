@@ -1,11 +1,11 @@
-import BookingCard from "../../components/BookingsCard/BookingsCard";
+import BookingCard from "../../components/BookingsCard";
 import Button from "../../components/common/Button";
 import styles from "./ProfilePage.module.css";
 import { getProfile } from "../../API/Data/getProfile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import VenueCard from "../../components/VenueCard/VenueCard";
-import EditForm from "../../components/common/EditForm/EditForm";
+import VenueCard from "../../components/VenueCard";
+import EditForm from "../../components/common/EditForm";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_PROFILE_PATH = process.env.API_ALL_PROFILES;

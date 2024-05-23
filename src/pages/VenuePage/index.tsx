@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./VenuePage.module.css";
-import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
-import FeatureCard from "../../components/common/FeatureCards/FeatureCards";
+import ImageCarousel from "../../components/ImageCarousel";
+import FeatureCard from "../../components/common/FeatureCards";
 import { getSingleVenue } from "../../API/Data/getSingleVenue";
-import BookingForm from "../../components/BookingForm/BookingForm";
+import BookingForm from "../../components/BookingForm";
 import { useContext } from "react";
 import { AuthContext } from "../../App";
 

@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import FeatureCard from "../common/FeatureCards/FeatureCards";
+import FeatureCard from "../common/FeatureCards";
 import styles from "./VenueCard.module.css";
 import { useEffect, useState } from "react";
-import OwnerInteractions from "../common/OwnerInteractions/OwnerInteractions";
+import OwnerInteractions from "../common/OwnerInteractions";
 
 type VenueCard = {
   id: string,

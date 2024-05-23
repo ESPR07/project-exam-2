@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { getVenueList } from "../../API/Data/getVenueList";
-import Banner from "../../components/Banner/Banner";
-import Searchbar from "../../components/Searchbar/Searchbar";
-import VenueCard from "../../components/VenueCard/VenueCard";
+import Banner from "../../components/Banner";
+import Searchbar from "../../components/Searchbar";
+import VenueCard from "../../components/VenueCard";
 import styles from "./Homepage.module.css";
 import Button from "../../components/common/Button";
 
