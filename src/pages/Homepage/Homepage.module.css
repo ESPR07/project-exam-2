@@ -3,11 +3,24 @@
   flex-direction: column;
   align-items: center;
   margin-inline: 15%;
-  padding-bottom: 100px;
+}
+
+.pageCounter {
+  text-align: center;
+}
+
+.pageCountInteraction {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }
 
 @media screen and (max-width: 900px) {
   .pageContent {
     margin-inline: 10px;
+  }
+
+  .pageCountInteraction {
+    width: 80%;
   }
 }

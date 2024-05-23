@@ -1,11 +1,11 @@
-import BookingCard from "../../components/BookingsCard/BookingsCard";
+import BookingCard from "../../components/BookingsCard";
 import Button from "../../components/common/Button";
 import styles from "./ProfilePage.module.css";
 import { getProfile } from "../../API/Data/getProfile";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import VenueCard from "../../components/VenueCard/VenueCard";
-import EditForm from "../../components/common/EditForm/EditForm";
+import VenueCard from "../../components/VenueCard";
+import EditForm from "../../components/common/EditForm";
 
 const API_BASE = process.env.API_BASE_URL;
 const API_PROFILE_PATH = process.env.API_ALL_PROFILES;
@@ -34,6 +34,8 @@ function ProfilePage() {
 
   const { profileInfo, isLoading, isError } = getProfile(getProfileURL, profileHeader);
 
+  const reversedBookings = profileInfo?.bookings ? [...profileInfo.bookings].reverse() : [];
+
   function clickCreateVenue() {
     navigate("create-venue");
   }
@@ -43,6 +45,12 @@ function ProfilePage() {
     setTimeout(() => {
       setIsEditProfile(true);
     }, 200)
+  }
+
+  function isBeforeToday(date: string) {
+    const today = new Date();
+    const setDate = new Date(date)
+    return setDate < today;
   }
 
   if(!isLoading && isBooking) {
@@ -69,9 +77,10 @@ function ProfilePage() {
               <p className={isBooking? styles.active : ""} onClick={() => {setIsBooking(true)}}>My Bookings</p>
               {profileInfo?.venueManager? <p className={!isBooking? styles.active : ""} onClick={() => {setIsBooking(false)}}>My Venues</p> : ""}
             </div>
-            {profileInfo?.bookings.map((booking) => {
+            {reversedBookings?.map((booking) => {
+              const isPastBooking = isBeforeToday(booking.dateTo);
               return(
-                <BookingCard key={booking.id} bookings={booking}/>
+                <BookingCard key={booking.id} bookings={booking} expired={isPastBooking}/>
               )
             })}
           </div>

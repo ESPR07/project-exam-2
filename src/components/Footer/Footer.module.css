@@ -1,0 +1,33 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--containers);
+  padding-block: 10px;
+  margin-top: 50px;
+  border-top: 2px solid var(--interactions);
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  border-bottom: 2px solid var(--interactions);
+  padding-bottom: 20px;
+}
+
+.logo {
+  background-image: url("/src/assets/logo.webp");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100px;
+}
+
+.developer {
+  width: 90%;
+  text-align: start;
+  font-size: 0.8rem;
+}

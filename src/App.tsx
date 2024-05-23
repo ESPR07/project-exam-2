@@ -1,12 +1,13 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
-import Homepage from "./pages/Homepage/Homepage"
-import VenuePage from "./pages/VenuePage/VenuePage"
+import Homepage from "./pages/Homepage"
+import VenuePage from "./pages/VenuePage"
 import { createContext, useState } from "react"
-import RegisterPage from "./pages/RegisterPage/RegisterPage"
-import ProfilePage from "./pages/ProfilePage/ProfilePage"
-import CreateVenuePage from "./pages/CreateVenuePage/CreateVenuePage"
-import EditVenuePage from "./pages/EditVenuePage/EditVenuePage"
+import RegisterPage from "./pages/RegisterPage"
+import ProfilePage from "./pages/ProfilePage"
+import CreateVenuePage from "./pages/CreateVenuePage"
+import EditVenuePage from "./pages/EditVenuePage"
+import Footer from "./components/Footer"
 
 type PrivateRoute = {
   auth: {
@@ -32,6 +33,7 @@ function Layout() {
     <>
       <Navbar/>
       <Outlet/>
+      <Footer/>
     </>
   )
 }
