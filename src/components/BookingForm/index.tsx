@@ -47,7 +47,7 @@ function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings:
   const [startDate, setStartDate] = useState<Value>(defaultValue);
   const [endDate, setEndDate] = useState<Value>(defaultValue);
   const [bookedDates, setBookedDates] = useState<string[]>([]);
-  const [guests, setGuests] = useState<number>(1);
+  const [guests, setGuests] = useState<string>("");
   const [bookingError, setBookingError] = useState<boolean>(false);
   const {isLoggedIn} = useContext(AuthContext);
 
@@ -153,7 +153,7 @@ function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings:
         {bookingError? <p className={styles.bookingError}>Dates for bookings can't overlap.</p> : ""}
         <label htmlFor="guests" className={styles.guestsLabel}>Guests (Max {maxGuests}):</label>
         <input type="number" name="guests" id="guests" className={styles.guestsInput} value={guests} min={1} max={maxGuests} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setGuests(Number(e.target.value))
+          setGuests(e.target.value)
         }}/>
         <Button text="Place Booking" type="submit" event={() => {}}/>
       </form>

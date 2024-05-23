@@ -40,7 +40,7 @@ type Bookings =   {
   },
 }
 
-function BookingCard({bookings} : {bookings: Bookings}) {
+function BookingCard({bookings, expired} : {bookings: Bookings, expired: boolean}) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -56,8 +56,9 @@ function BookingCard({bookings} : {bookings: Bookings}) {
 
   return(
   <Link to={`/venue/${bookingVenue.id}`} className={`${styles.venueContainer} ${!isClicked? styles.notClicked : styles.clicked}`} onClick={clickEvent}>
-    <img src={bookingVenue.media[0].url} alt={bookingVenue.media[0].alt}/>
-    <div className={styles.infoContainer}>
+    <img src={bookingVenue.media[0].url} alt={bookingVenue.media[0].alt} className={expired? styles.expired : ""}/>
+    {expired? <p className={styles.expiredTag}>Expired</p>: ""}
+    <div className={`${styles.infoContainer}`}>
       <h1>{bookingVenue.name}</h1>
       <div className={styles.metaInfo}>
         <h2><span className={styles.locationIcon}></span>{bookingVenue.location.country}</h2>
