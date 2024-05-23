@@ -64,11 +64,11 @@ function Homepage() {
           )
         })}
         <div className={styles.pageCounter}>
-          <p>Page:</p>
-          <p>{currentPage}/{venueList.meta.pageCount}</p>
-        </div>
-        <div className={styles.pageCountInteraction}>
           <Button text="Prev Page" type="button" event={() => {decreaseVenueAmount()}}/>
+          <div>
+            <p>Page:</p>
+            <p>{currentPage}/{venueList.meta.pageCount}</p>
+          </div>
           <Button text="Next Page" type="button" event={() => {increaseVenueAmount()}}/>
         </div>
       </section>

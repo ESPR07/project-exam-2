@@ -15,8 +15,8 @@
 }
 
 .notClicked {
-  background-position: right 50vw top 60%;
-  transition: background-position 1s ease-in-out;
+  background-position: right 70vw top 60%;
+  transition: background-position 0.8s ease-out;
 }
 
 .notClicked:hover {
