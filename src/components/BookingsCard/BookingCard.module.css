@@ -16,8 +16,8 @@
 }
 
 .notClicked {
-  background-position: right 50vw top 60%;
-  transition: background-position 1s ease-in-out;
+  background-position: right 70vw top 60%;
+  transition: background-position 0.8s ease-out;
 }
 
 .notClicked:hover {
@@ -132,5 +132,10 @@ border-radius: 3px;
 
   .guestsAmount {
     font-size: 0.7rem;
+  }
+
+  .expiredTag {
+    bottom: 40px;
+    font-size: 0.8rem;
   }
 }

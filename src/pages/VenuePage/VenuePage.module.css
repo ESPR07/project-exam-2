@@ -13,6 +13,7 @@
   color: var(--interactions);
   font-size: 1.2rem;
   font-weight: bold;
+  font-family: var(--mainFont);
   max-width: 100px;
 }
 
