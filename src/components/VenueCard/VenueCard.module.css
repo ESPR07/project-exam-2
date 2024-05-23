@@ -9,22 +9,22 @@
   padding-block: 10px;
   text-decoration: none;
   color: var(--textColor);
-  background-image: url("/src/assets/flightHover.webp");
-  background-size: contain;
+  background-image: url("/src/assets/flightHover2.webp");
+  background-size: 30vw;
   background-repeat: no-repeat;
 }
 
 .notClicked {
-  background-position: right 50vw top 50%;
+  background-position: right 50vw top 60%;
   transition: background-position 1s ease-in-out;
 }
 
 .notClicked:hover {
-  background-position: right 44vw top 50%;
+  background-position: right 46vw top 60%;
 }
 
 .clicked {
-  background-position: right -15vw top 50%;
+  background-position: right -15vw top 60%;
   transition: background-position 1s ease-in-out;
 }
 
