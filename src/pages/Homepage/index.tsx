@@ -34,7 +34,7 @@ function Homepage() {
       <main className={styles.homepageContainer}>
       <Banner/>
       <section className={styles.pageContent}>
-        <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
+        <Searchbar searchWord={setSearchWord} searchState={setIsSearched} setCurrentPage={setcurrentPage}/>
         <h1>Loading...</h1>
       </section>
     </main>
@@ -46,7 +46,7 @@ function Homepage() {
       <main className={styles.homepageContainer}>
       <Banner/>
       <section className={styles.pageContent}>
-        <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
+        <Searchbar searchWord={setSearchWord} searchState={setIsSearched} setCurrentPage={setcurrentPage}/>
         <h1>Oops Something went wrong!</h1>
       </section>
     </main>
@@ -57,7 +57,7 @@ function Homepage() {
     <main className={styles.homepageContainer}>
       <Banner/>
       <section className={styles.pageContent}>
-        <Searchbar searchWord={setSearchWord} searchState={setIsSearched}/>
+        <Searchbar searchWord={setSearchWord} searchState={setIsSearched} setCurrentPage={setcurrentPage}/>
         {venueList.data.map((venue) => {
           return(
             <VenueCard key={venue.id} id={venue.id} image={venue.media[0]?.url} alt={venue.media[0]?.alt} title={venue.name} location={venue.location.country} features={venue.meta} price={venue.price} owner={venue.owner.name}/>
@@ -71,6 +71,7 @@ function Homepage() {
           </div>
           <Button text="Next Page" type="button" event={() => {increaseVenueAmount()}}/>
         </div>
+        <Button text="To Top" type="button" event={() => {window.scrollTo(0, 0)}}/>
       </section>
     </main>
   )

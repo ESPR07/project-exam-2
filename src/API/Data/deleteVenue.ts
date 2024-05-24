@@ -15,7 +15,6 @@ export function deleteVenue() {
         console.log(await authEvent.json());
       }
     } catch (error) {
-      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

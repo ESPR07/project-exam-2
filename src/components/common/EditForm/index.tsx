@@ -13,6 +13,7 @@ type EditInfo = {
   banner: string | undefined,
   bio: string | undefined,
   venueManager: boolean | undefined,
+  name: string | null,
   removed: boolean,
   setIsRemoved: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -33,12 +34,12 @@ const API_BASE = process.env.API_BASE_URL;
 const API_PROFILES_PATH = process.env.API_ALL_PROFILES;
 
 
-function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bio, venueManager}: EditInfo) {
+function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bio, venueManager, name}: EditInfo) {
   const [isManager, setIsManager] = useState<boolean>(venueManager as boolean);
 
   const API_UPDATE_PROFILE = `${API_BASE}${API_PROFILES_PATH}/${name}`
 
-  const {updateUserFetch} = updateUserEvent();
+  const {updateUserFetch, isError} = updateUserEvent();
   const { register, handleSubmit, formState: { errors }} = useForm<Inputs>({
     resolver: yupResolver<Inputs>(userSchema),
   });
@@ -81,6 +82,7 @@ function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bi
     }
 
     const updateUser = await updateUserFetch(API_UPDATE_PROFILE, profileDetails);
+    console.log(updateUser);
     if(updateUser?.ok === true) {
       alert("Profile has been updated!");
       localStorage.removeItem("avatar");
@@ -115,6 +117,7 @@ function EditForm({isOpen, changeOpen, removed, setIsRemoved, avatar, banner, bi
         <label htmlFor="no"></label>
       </div>
       <Button text="Update Profile" type="submit" event={() => {}}/>
+      {isError? <p className={styles.errorText}>Something went wrong!</p> : ""}
       <Button text="X" type="button" event={closeEdit}/>
     </form>
   )

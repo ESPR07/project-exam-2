@@ -51,7 +51,7 @@ function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings:
   const [bookingError, setBookingError] = useState<boolean>(false);
   const {isLoggedIn} = useContext(AuthContext);
 
-  const {bookingFetch} = postBooking()
+  const {bookingFetch, isError} = postBooking()
 
   useEffect(() => {
     const excludedDates = bookings.map((booking) => {
@@ -108,7 +108,7 @@ function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings:
       body: JSON.stringify({
         dateFrom: startDate,
         dateTo: endDate,
-        guests: guests,
+        guests: Number(guests),
         venueId: venueID
       })
     }
@@ -152,10 +152,11 @@ function BookingForm({venueID, bookings, maxGuests}: {venueID: string, bookings:
         </div>
         {bookingError? <p className={styles.bookingError}>Dates for bookings can't overlap.</p> : ""}
         <label htmlFor="guests" className={styles.guestsLabel}>Guests (Max {maxGuests}):</label>
-        <input type="number" name="guests" id="guests" className={styles.guestsInput} value={guests} min={1} max={maxGuests} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        <input type="number" name="guests" id="guests" className={styles.guestsInput} placeholder="1" value={guests} min={1} max={maxGuests} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setGuests(e.target.value)
-        }}/>
+        }} required/>
         <Button text="Place Booking" type="submit" event={() => {}}/>
+        {isError? <p className={styles.bookingError}>Something went wrong!</p> : ""}
       </form>
     </div>
   )

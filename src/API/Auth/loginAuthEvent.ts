@@ -48,11 +48,9 @@ export function loginAuthEvents() {
         localStorage.setItem("isManager", authResponse.data.venueManager);
       } else {
         setIsError(true);
-        console.log("Something went wrong!");
       }
       return authEvent;
     } catch (error) {
-      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);
