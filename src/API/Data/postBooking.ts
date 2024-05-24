@@ -19,7 +19,6 @@ export function postBooking() {
       }
       return authEvent;
     } catch (error) {
-      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

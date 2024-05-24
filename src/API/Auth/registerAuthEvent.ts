@@ -15,11 +15,9 @@ export function registerAuthEvents() {
         return authResponse.data
       } else {
         setIsError(true);
-        console.log("Something went wrong!");
       }
       return authEvent;
     } catch (error) {
-      console.error(error);
       setIsError(true);
     } finally {
       setIsLoading(false);

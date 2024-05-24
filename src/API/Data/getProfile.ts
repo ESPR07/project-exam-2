@@ -106,7 +106,7 @@ export function getProfile(url: string, verification: {}) {
           const authResponse = await authEvent.json();
           setProfileInfo(authResponse.data);
         } else {
-          console.log("Something went wrong!");
+          setIsError(true);
         }
       } catch (error) {
         console.error(error);

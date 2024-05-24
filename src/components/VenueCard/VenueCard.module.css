@@ -44,6 +44,7 @@
   flex-direction: column;
   width: 100%;
   margin-left: 10px;
+  overflow-x: hidden;
 }
 
 .infoContainer h1, h2 {

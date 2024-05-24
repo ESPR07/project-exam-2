@@ -131,7 +131,7 @@ export function getSingleVenue(url: string) {
           const authResponse = await authEvent.json();
           setVenueData(authResponse.data);
         } else {
-          console.log("Something went wrong!");
+          setIsError(true);
         }
       } catch (error) {
         console.error(error);
