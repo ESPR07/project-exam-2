@@ -33,7 +33,7 @@ export function loginAuthEvents() {
   const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [isError, setIsError] = useState<Boolean>(false);
 
-  async function APIFetch(url: string, verifictaion: {}) {
+  async function APIFetch(url: string, verifictaion: {}): Promise<Response | undefined> {
     try {
       setIsLoading(true);
       setIsError(false);

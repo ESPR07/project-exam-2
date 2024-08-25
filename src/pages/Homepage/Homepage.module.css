@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin-inline: 15%;
+  margin-bottom: 50px;
 }
 
 .pageCounter {

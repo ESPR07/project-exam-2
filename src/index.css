@@ -18,11 +18,19 @@ html, body {
 }
 
 body{
+  display: flex;
   margin: 0;
   box-sizing: border-box;
   font-family: var(--mainFont);
   background-color: var(--background);
   color: var(--textColor);
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 input, textarea {

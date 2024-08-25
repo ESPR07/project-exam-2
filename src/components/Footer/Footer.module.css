@@ -4,7 +4,7 @@ footer {
   align-items: center;
   background-color: var(--containers);
   padding-block: 10px;
-  margin-top: 50px;
+  margin-top: auto;
   border-top: 2px solid var(--interactions);
 }
 
