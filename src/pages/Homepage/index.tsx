@@ -20,6 +20,8 @@ function Homepage() {
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
 
+  console.log(venueList);
+
   function increaseVenueAmount() {
     setcurrentPage(prevAmount => prevAmount + 1);
   }
