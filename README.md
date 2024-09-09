@@ -1,5 +1,5 @@
 ## Current status og the site:
-[![Build](https://github.com/ESPR07/project-exam-2/actions/workflows/pipeline.yml/badge.svg)](https://github.com/ESPR07/project-exam-2/actions/workflows/pipeline.yml)
+[![Build and Test](https://github.com/ESPR07/project-exam-2/actions/workflows/pipeline.yml/badge.svg)](https://github.com/ESPR07/project-exam-2/actions/workflows/pipeline.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2bcd76e8-07a5-4b6e-90b4-8a0e6cf21cd6/deploy-status)](https://app.netlify.com/sites/holidaze-sindre/deploys)
 
 ## Final Exam
