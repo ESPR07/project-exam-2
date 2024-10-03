@@ -20,8 +20,6 @@ function Homepage() {
 
   const {venueList, isLoading, isError} = getVenueList(!isSearched? defaultURL : searchedURL);
 
-  console.log(venueList);
-
   function increaseVenueAmount() {
     if(venueList.meta.isLastPage) {
       return
