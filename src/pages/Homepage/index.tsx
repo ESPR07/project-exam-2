@@ -23,10 +23,18 @@ function Homepage() {
   console.log(venueList);
 
   function increaseVenueAmount() {
+    if(venueList.meta.isLastPage) {
+      return
+    }
+
     setcurrentPage(prevAmount => prevAmount + 1);
   }
 
   function decreaseVenueAmount() {
+    if(venueList.meta.isFirstPage){
+      return
+    }
+
     setcurrentPage(prevAmount => prevAmount - 1);
   }
 
