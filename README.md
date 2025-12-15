@@ -3,7 +3,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2bcd76e8-07a5-4b6e-90b4-8a0e6cf21cd6/deploy-status)](https://app.netlify.com/sites/holidaze-sindre/deploys)
 
 ## Final Exam
-![image](https://github.com/ESPR07/project-exam-2/assets/111272036/03faaae4-aa20-43f3-b6fd-87c833fe3372)
+<img width="1920" height="917" alt="bilde" src="https://github.com/user-attachments/assets/4d503555-e6b0-434a-90a8-5d3c69cd5ad1" />
+
 
 
 
